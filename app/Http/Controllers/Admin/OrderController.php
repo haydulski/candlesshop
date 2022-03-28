@@ -6,10 +6,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\OrderCreateRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\OrderStatusReq;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -61,5 +60,16 @@ class OrderController extends Controller
         }
 
         return redirect()->route('admin.orders.all')->with('success', 'Order added');
+    }
+
+    public function status(int $id, OrderStatusReq $req): RedirectResponse
+    {
+        $data = $req->validated();
+        if (isset($data)) {
+            $order = $this->order->find($id);
+            $order->update(['status' => $data['status']]);
+            return redirect()->route('admin.order.show', $id)->with('success', 'Status of order was update');
+        }
+        return redirect('401')->route('admin.order.show', $id)->with('error', 'Somethin went wrong');
     }
 }

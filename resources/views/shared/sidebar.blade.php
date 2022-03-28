@@ -41,5 +41,9 @@
 </a>
 <a class="nav-link" href="#">
     <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-    Log out
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit"> Log out</button>
+    </form>
+
 </a>

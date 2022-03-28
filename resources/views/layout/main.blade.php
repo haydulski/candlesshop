@@ -56,22 +56,24 @@
     </nav>
 
 
-    {{-- @auth --}}
+
     <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                @section('sidebar')
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            @include('shared.sidebar')
+        @auth
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    @section('sidebar')
+                        <div class="sb-sidenav-menu">
+                            <div class="nav">
+                                @include('shared.sidebar')
+                            </div>
                         </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        Sidenav Footer
-                    </div>
-                @show
-            </nav>
-        </div>
+                        <div class="sb-sidenav-footer">
+                            Sidenav Footer
+                        </div>
+                    @show
+                </nav>
+            </div>
+        @endauth
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
@@ -90,18 +92,8 @@
             </footer>
         </div>
     </div>
-    {{-- @else
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container-fluid">
-                        @include('shared.messages')
-                        @yield('content')
-                    </div>
-                </main>
-            </div>
-        </div>
-    @endauth --}}
+
+
     <script src="{{ mix('/js/app.js') }}"></script>
     <script>
         const navbarLinks = document.querySelectorAll("#layoutSidenav_nav .sb-sidenav a.nav-link");

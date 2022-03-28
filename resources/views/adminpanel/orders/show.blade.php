@@ -45,7 +45,7 @@
     <div class="card  mt-5">
         <div class="card-body">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-12 col-xl-6">
                     <h4 class="card-header">Products:</h4>
                     @if (count($order->items) > 0)
                         <table class="table">
@@ -72,8 +72,32 @@
                         </table>
                     @endif
                 </div>
-                <div class="col-6">
+                <div class="col-md-12 col-xl-6">
                     <h4 class="card-header">Order status:</h4>
+                    <div class="row justify-content-arround">
+                        <div class="col-6">
+
+                            <p class="btn btn-success mt-3">{{ orderStatusName($order->status) }}</p>
+                            <span>{{ $order->updated_at }}</span>
+                        </div>
+                        <div class="col-6">
+                            <p class="mt-3">Change order status:</p>
+                            <form action="{{ route('admin.order.status.update', ['id' => $order->id]) }}" method="post">
+                                @csrf
+                                <select class="form-select" name="status" id="status">
+                                    <option value="1">New</option>
+                                    <option value="2">Checkout</option>
+                                    <option value="3">Paid</option>
+                                    <option value="4">Failed</option>
+                                    <option value="5">Shipped</option>
+                                    <option value="6">Delivered</option>
+                                    <option value="7">Returned</option>
+                                    <option value="8">Complete</option>
+                                </select>
+                                <button type="submit" class="btn btn-dark mt-2">Update status</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
