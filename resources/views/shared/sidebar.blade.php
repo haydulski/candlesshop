@@ -40,10 +40,11 @@
     Orders
 </a>
 <a class="nav-link" href="#">
-    <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+
     <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit"> Log out</button>
+        <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout"></div>
+
     </form>
 
 </a>

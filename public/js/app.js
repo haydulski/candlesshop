@@ -5481,8 +5481,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/axios */ "./resources/js/services/axios.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -5508,10 +5507,17 @@ function Page2() {
       posts = _useState2[0],
       getPosts = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
   var handleBtn = function handleBtn() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post('/baza').then(function (res) {
+    setLoading(true);
+    _services_axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/products').then(function (res) {
       console.log(res.data);
       getPosts(res.data);
+      setLoading(false);
     })["catch"](function (err) {
       console.log(err);
     });
@@ -5525,15 +5531,17 @@ function Page2() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
       onClick: handleBtn,
       children: "Od\u015Bwie\u017C"
-    })]
+    }), loading ? '  Ładowanie produktów...' : '']
   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
       children: "Posty"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("ul", {
-      children: posts.map(function (post, key) {
+      children: posts.map(function (product, key) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
           className: "all-posts",
-          children: post.title
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
+            children: product.title
+          })
         }, key);
       })
     })]
@@ -5568,6 +5576,28 @@ function Page3() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Page3);
+
+/***/ }),
+
+/***/ "./resources/js/services/axios.js":
+/*!****************************************!*\
+  !*** ./resources/js/services/axios.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var apiClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: 'http://lareact.damian/api/v1',
+  withCredentials: true
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (apiClient);
 
 /***/ }),
 
