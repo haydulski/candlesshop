@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrderCreateRequest extends FormRequest
 {
@@ -11,9 +12,11 @@ class OrderCreateRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true;
+        $vendor = Auth::user()->vendor;
+        if ($vendor === 0) return true;
+        return false;
     }
 
     /**

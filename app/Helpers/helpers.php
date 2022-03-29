@@ -8,9 +8,9 @@ if (!function_exists('orderStatusName')) {
             case 2:
                 return 'Checkout';
             case 3:
-                return 'Failed';
-            case 4:
                 return 'Paid';
+            case 4:
+                return 'Failed';
             case 5:
                 return 'Shipped';
             case 6:

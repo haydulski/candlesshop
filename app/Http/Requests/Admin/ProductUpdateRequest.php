@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ProductUpdateRequest extends FormRequest
 {
@@ -14,7 +15,9 @@ class ProductUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $vendor = Auth::user()->vendor;
+        if ($vendor === 0) return true;
+        return false;
     }
 
     /**

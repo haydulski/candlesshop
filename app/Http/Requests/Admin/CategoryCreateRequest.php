@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryCreateRequest extends FormRequest
 {
@@ -13,7 +14,9 @@ class CategoryCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $vendor = Auth::user()->vendor;
+        if ($vendor === 0) return true;
+        return false;
     }
 
     /**

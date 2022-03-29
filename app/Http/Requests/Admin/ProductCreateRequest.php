@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCreateRequest extends FormRequest
 {
@@ -15,7 +16,9 @@ class ProductCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $vendor = Auth::user()->vendor;
+        if ($vendor === 0) return true;
+        return false;
     }
     protected function prepareForValidation()
     {
