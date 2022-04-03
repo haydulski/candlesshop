@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import { NavContainer, Nav, Column } from './Navbar.css'
 import { MenuBar } from '../../imgs/menu-icon.js'
@@ -13,10 +13,11 @@ function Navbar() {
 
     const [clickedMenu, setClickedMenu] = useState(false);
     const location = useLocation();
+    const t1 = gsap.timeline({ paused: true });
+    const mmm = useRef(null);
 
     useEffect(() => {
-        const t1 = gsap.timeline({ paused: true });
-        t1.to('.toggle-menu', .5, {
+        t1.to(mmm.current, .5, {
             top: 0,
         });
 
@@ -36,6 +37,7 @@ function Navbar() {
             t1.reversed(!t1.reversed());
         }
 
+
         menuTrigger.addEventListener("click", toggleMenuView);
         closeTrigger.addEventListener("click", toggleMenuView);
 
@@ -52,6 +54,7 @@ function Navbar() {
 
 
     }, [clickedMenu])
+
 
     const handleClick = () => { setClickedMenu(!clickedMenu) }
 
@@ -73,7 +76,7 @@ function Navbar() {
 
             </Nav>
         </NavContainer>
-        <Menu click={handleClick} />
+        <Menu click={handleClick} menuref={mmm} />
     </>);
 }
 

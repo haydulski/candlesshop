@@ -6194,15 +6194,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Menu(_ref) {
-  var click = _ref.click;
+  var click = _ref.click,
+      menuref = _ref.menuref;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Menu_css__WEBPACK_IMPORTED_MODULE_1__.MenuContainer, {
     className: "toggle-menu",
+    ref: menuref,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Menu_css__WEBPACK_IMPORTED_MODULE_1__.Row, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "column",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_imgs_close_btn__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
           className: "main-menu",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+            onClick: click,
             className: "first-level",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
               to: "/",
@@ -6358,11 +6361,12 @@ function Navbar() {
       setClickedMenu = _useState2[1];
 
   var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
+  var t1 = gsap_all__WEBPACK_IMPORTED_MODULE_10__.gsap.timeline({
+    paused: true
+  });
+  var mmm = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var t1 = gsap_all__WEBPACK_IMPORTED_MODULE_10__.gsap.timeline({
-      paused: true
-    });
-    t1.to('.toggle-menu', .5, {
+    t1.to(mmm.current, .5, {
       top: 0
     });
     t1.from(".main-menu li.first-level", 0.5, {
@@ -6416,7 +6420,8 @@ function Navbar() {
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_menu_Menu__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      click: handleClick
+      click: handleClick,
+      menuref: mmm
     })]
   });
 }

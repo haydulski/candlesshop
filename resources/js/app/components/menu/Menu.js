@@ -3,11 +3,11 @@ import { MenuContainer, Row } from './Menu.css'
 import CloseBtn from '../../imgs/close-btn'
 import { Link } from 'react-router-dom'
 
-function Menu({ click }) {
+function Menu({ click, menuref }) {
 
 
     return (
-        <MenuContainer className="toggle-menu">
+        <MenuContainer className="toggle-menu" ref={menuref}>
             <Row>
                 <div className="column">
                     <CloseBtn />
