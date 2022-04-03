@@ -1,0 +1,21 @@
+import styled from 'styled-components'
+
+export const Container = styled.div`
+display:flex;
+justify-content:space-between;
+width:100%;
+`
+export const Product = styled.div`
+width:${({ width }) => width};
+text-align:left;
+& p.title{
+    font-size:1.75rem;
+    font-weight:bold;
+    color:${({ color, theme }) => color = "green" ? theme.colors.green : theme.colors.orange}
+}
+& p.price{
+    font-size:1.75rem;
+    font-weight:medium;
+    color:${({ color, theme }) => color = "green" ? theme.colors.green : theme.colors.orange}
+}
+`

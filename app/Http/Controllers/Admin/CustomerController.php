@@ -17,9 +17,12 @@ class CustomerController extends Controller
         $this->user = $us;
     }
 
-    public function index(): View
+    public function index(string $sorting = 'id'): View
     {
-        $all = $this->user->where('vendor', '=', '1')->paginate(10);
+        $all = $this->user
+            ->where('vendor', '=', '1')
+            ->orderBy($sorting, 'ASC')
+            ->paginate(10);
 
         return view('adminpanel.customers.all', ['customers' => $all]);
     }

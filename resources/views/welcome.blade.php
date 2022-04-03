@@ -8,7 +8,11 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&family=Jost:wght@400;500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -22,7 +26,7 @@
 
         </div>
     @endif
-    <div id="example"></div>
+    <div id="main-root"></div>
     <script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 

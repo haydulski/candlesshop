@@ -12,12 +12,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Name</th>
-                        <th>Last Name</th>
+                        <th>Order</th>
+                        <th><a href="{{ route('admin.customers.all', ['sorting' => 'id']) }}">ID</a></th>
+                        <th><a href="{{ route('admin.customers.all', ['sorting' => 'name']) }}">Name</a></th>
+                        <th><a href="{{ route('admin.customers.all', ['sorting' => 'surname']) }}">Last Name</a></th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>Registered from</th>
+                        <th><a href="{{ route('admin.customers.all', ['sorting' => 'created_at']) }}">Registered from</a>
+                        </th>
                         <th>Edit</th>
                     </tr>
                 </thead>
@@ -25,6 +27,7 @@
                     @foreach ($customers as $customer)
                         <tr style="vertical-align: middle;">
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $customer->id }}</td>
                             <td>
                                 {{ $customer->name }}
                             </td>
