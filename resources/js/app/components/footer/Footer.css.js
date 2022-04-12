@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import bgImg from '../../imgs/main-page-header.jpg'
 
-export const Container = styled.section`
+export const Container = styled.footer`
 min-height:30vh;
 max-height:60vh;
 min-width:100vw;

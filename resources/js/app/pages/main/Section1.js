@@ -7,7 +7,7 @@ function Section1() {
         <Container >
             <Row><h2>Newest<br />products</h2></Row>
             <Row>
-                <ProductsGrid width="33%" color='green' />
+                <ProductsGrid width="33%" color='green' mode='newest' limit='3' />
             </Row>
         </Container>
     );

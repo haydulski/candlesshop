@@ -1,0 +1,6 @@
+export const LOADING_STATES = {
+    INITIAL: 'INITIAL',
+    LOADING: 'LOADING',
+    FAILED: 'FAILED',
+    LOADED: 'LOADED',
+}

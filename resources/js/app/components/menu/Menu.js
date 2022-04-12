@@ -14,13 +14,13 @@ function Menu({ click, menuref }) {
                     <ul className="main-menu">
                         <li onClick={click} className='first-level'><Link to="/">Home</Link>
                         </li>
-                        <li className='first-level'><a href="#">Shop</a>
+                        <li className='first-level'>Shop
                             <ul className="submenu">
-                                <li className='second-level'>All products</li>
-                                <li className='second-level'>Woody</li>
-                                <li className='second-level'>Floral</li>
-                                <li className='second-level'>Fresh</li>
-                                <li onClick={click} className='second-level'><Link to="/products/test-1">Oriental</Link></li>
+                                <li onClick={click} className='second-level'><Link to="/shop">All products</Link></li>
+                                <li onClick={click} className='second-level'><Link to="/category/woody-category">Woody</Link></li>
+                                <li onClick={click} className='second-level'><Link to="/category/floral-category">Floral</Link></li>
+                                <li onClick={click} className='second-level'><Link to="/category/fresh-category">Fresh</Link></li>
+                                <li onClick={click} className='second-level'><Link to="/category/oriental-category">Oriental</Link></li>
                             </ul>
                         </li>
                         <li className='first-level'><a href="#">Rest</a>

@@ -7,7 +7,7 @@ function Section3() {
         <Container className='slide slide2'>
             <Row><h2>Best<br />sellers</h2></Row>
             <Row>
-                <ProductsGrid width="33%" color='orange' />
+                <ProductsGrid width="33%" color='orange' mode='best' limit="3" />
             </Row>
         </Container>
     );

@@ -5,13 +5,20 @@ import Section2 from './Section2.js';
 import Section3 from './Section3.js';
 import { gsap } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-const Main = () => {
+import { connect } from 'react-redux';
+import { fetchProductsAction } from '../../redux/actions/productActions.js';
+const Main = ({ products, fetchProductsAction }) => {
 
     const pageTitle = useRef(null)
     const slides = useRef(null)
     const title = gsap.timeline()
     const sliderAnimation = gsap.timeline()
+
+    useEffect(() => {
+        if (products.length < 1) {
+            fetchProductsAction()
+        }
+    }, [fetchProductsAction])
 
     useEffect(() => {
         // page title 
@@ -32,7 +39,8 @@ const Main = () => {
             animation: sliderAnimation,
             trigger: '.main-slider',
             start: "top -50px",
-            end: "+=6000",
+            end: "+=4000",
+            // snap: 1 / 2,
             scrub: 2,
             pin: true,
             anticipaePin: 1
@@ -59,4 +67,8 @@ const Main = () => {
         </div>
     )
 }
-export default Main
+export default connect(state => {
+    return {
+        products: state.productsState.products
+    }
+}, { fetchProductsAction })(Main)

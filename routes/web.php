@@ -70,3 +70,4 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 });
 Route::view('/{path?}', 'welcome');
 Route::view('/products/{path?}', 'welcome');
+Route::view('/category/{path?}', 'welcome');
