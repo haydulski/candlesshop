@@ -1,4 +1,4 @@
-import { AUTH_STATE, IS_LOGGED, USER_LOAD } from '../enums/auth'
+import { AUTH_STATE, IS_LOGGED, USER_LOAD, USER_LOGOUT } from '../enums/auth'
 
 const intialState = {
     user: [],
@@ -14,15 +14,30 @@ export default function auth(state = intialState, action) {
                 loading: AUTH_STATE.LOADING
             }
         case USER_LOAD.USER_LOAD_SUCCESS:
+            localStorage.setItem('userId', action.payload.id)
             return {
                 ...state,
                 loading: AUTH_STATE.SUCCES,
-                products: action.payload
+                isLogged: IS_LOGGED.TRUE,
+                user: action.payload
             }
         case USER_LOAD.USER_LOAD_FAILURE:
             return {
                 ...state,
+                isLogged: IS_LOGGED.FALSE,
                 loading: AUTH_STATE.FAILURE
+            }
+        case USER_LOGOUT.USER_LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isLogged: IS_LOGGED.FALSE,
+                user: [],
+                loading: null
+            }
+        case USER_LOGOUT.USER_LOGOUT_FAILURE:
+            return {
+                ...state,
+                isLogged: IS_LOGGED.TRUE,
             }
 
         default:

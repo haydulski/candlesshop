@@ -6332,6 +6332,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _Navbar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navbar.css */ "./resources/js/app/components/navbar/Navbar.css.js");
 /* harmony import */ var _imgs_menu_icon_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../imgs/menu-icon.js */ "./resources/js/app/imgs/menu-icon.js");
 /* harmony import */ var _imgs_cart_icon_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../imgs/cart-icon.js */ "./resources/js/app/imgs/cart-icon.js");
@@ -6429,7 +6430,10 @@ function Navbar() {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Navbar_css__WEBPACK_IMPORTED_MODULE_1__.Column, {
           align: "right",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_search_icon__WEBPACK_IMPORTED_MODULE_6__.SearchIcon, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_account_svg__WEBPACK_IMPORTED_MODULE_5__.Account, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_cart_icon_js__WEBPACK_IMPORTED_MODULE_3__.Cart, {})]
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_search_icon__WEBPACK_IMPORTED_MODULE_6__.SearchIcon, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
+            to: "/my-account",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_account_svg__WEBPACK_IMPORTED_MODULE_5__.Account, {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_imgs_cart_icon_js__WEBPACK_IMPORTED_MODULE_3__.Cart, {})]
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_menu_Menu__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -6454,7 +6458,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "IS_LOGGED": () => (/* binding */ IS_LOGGED),
 /* harmony export */   "AUTH_STATE": () => (/* binding */ AUTH_STATE),
-/* harmony export */   "USER_LOAD": () => (/* binding */ USER_LOAD)
+/* harmony export */   "USER_LOAD": () => (/* binding */ USER_LOAD),
+/* harmony export */   "USER_LOGOUT": () => (/* binding */ USER_LOGOUT)
 /* harmony export */ });
 var IS_LOGGED = {
   FALSE: false,
@@ -6469,6 +6474,10 @@ var USER_LOAD = {
   USER_LOAD_REQUEST: "USER_LOAD_REQUEST",
   USER_LOAD_SUCCESS: "USER_LOAD_SUCCESS",
   USER_LOAD_FAILURE: "USER_LOAD_FAILURE"
+};
+var USER_LOGOUT = {
+  USER_LOGOUT_SUCCESS: "USER_LOGOUT_SUCCESS",
+  USER_LOGOUT_FAILURE: "USER_LOGOUT_FAILURE"
 };
 
 /***/ }),
@@ -6836,14 +6845,29 @@ function auth() {
       });
 
     case _enums_auth__WEBPACK_IMPORTED_MODULE_0__.USER_LOAD.USER_LOAD_SUCCESS:
+      localStorage.setItem('userId', action.payload.id);
       return _objectSpread(_objectSpread({}, state), {}, {
         loading: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.AUTH_STATE.SUCCES,
-        products: action.payload
+        isLogged: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED.TRUE,
+        user: action.payload
       });
 
     case _enums_auth__WEBPACK_IMPORTED_MODULE_0__.USER_LOAD.USER_LOAD_FAILURE:
       return _objectSpread(_objectSpread({}, state), {}, {
+        isLogged: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED.FALSE,
         loading: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.AUTH_STATE.FAILURE
+      });
+
+    case _enums_auth__WEBPACK_IMPORTED_MODULE_0__.USER_LOGOUT.USER_LOGOUT_SUCCESS:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isLogged: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED.FALSE,
+        user: [],
+        loading: null
+      });
+
+    case _enums_auth__WEBPACK_IMPORTED_MODULE_0__.USER_LOGOUT.USER_LOGOUT_FAILURE:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isLogged: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED.TRUE
       });
 
     default:
@@ -6983,6 +7007,10 @@ __webpack_require__.r(__webpack_exports__);
 var protectedRoute = function protectedRoute(_ref) {
   var isLogged = _ref.isLogged,
       children = _ref.children;
+
+  if (localStorage.userId !== undefined && localStorage.userId.length > 0) {
+    return children;
+  }
 
   if (!isLogged) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Navigate, {

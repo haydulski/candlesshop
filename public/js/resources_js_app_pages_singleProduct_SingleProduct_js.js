@@ -21,10 +21,11 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Container": () => (/* binding */ Container),
-/* harmony export */   "Description": () => (/* binding */ Description)
+/* harmony export */   "Description": () => (/* binding */ Description),
+/* harmony export */   "CounterInput": () => (/* binding */ CounterInput)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var _templateObject, _templateObject2;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -43,6 +44,7 @@ var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].sectio
   return theme.colors.lightGreen;
 });
 var Description = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].p(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nfont-size:1.2rem !important;\nwidth:80%;\n"])));
+var CounterInput = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\ndisplay:flex;\nwidth:12rem;\nheight:2rem;\nmargin:2rem 0;\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n  margin: 0;\n}\ndiv.minus,div.plus{\n    width:33%;\n    background:#eee;\n    border:1px solid #ebebeb;\n    cursor:pointer;\n    color:black;\n    line-height:2rem;\n    text-align:center;\n    font-weight:bold;\n}\ninput{\n    width:33%;\n    background:#eee;\n    -moz-appearance: textfield;\n    background:white;\n    text-align:center;\n    font-weight:bold;\n}\n"])));
 
 /***/ }),
 
@@ -100,6 +102,11 @@ function SingleProduct(_ref) {
       product = _useState2[0],
       setProduct = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState4 = _slicedToArray(_useState3, 2),
+      counter = _useState4[0],
+      setCounter = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (products.length < 1) {
       fetchProductsAction();
@@ -128,8 +135,28 @@ function SingleProduct(_ref) {
         children: ["$", product.price]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
         children: ["Available: ", product.stock_qty]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-        children: "Quantity"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_SingleProduct_css__WEBPACK_IMPORTED_MODULE_3__.CounterInput, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "minus",
+          onClick: function onClick() {
+            return setCounter(counter > 1 ? counter - 1 : 1);
+          },
+          children: "-"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+          type: "number",
+          name: "order_qty",
+          step: "1",
+          min: "1",
+          max: "10",
+          id: "order_qty",
+          value: counter
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "plus",
+          onClick: function onClick() {
+            return setCounter(counter < 10 ? counter + 1 : 10);
+          },
+          children: "+"
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
         className: "btn btn-secondary",
         children: "Add to cart"

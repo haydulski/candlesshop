@@ -45,3 +45,32 @@ export const Description = styled.p`
 font-size:1.2rem !important;
 width:80%;
 `
+export const CounterInput = styled.div`
+display:flex;
+width:12rem;
+height:2rem;
+margin:2rem 0;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+div.minus,div.plus{
+    width:33%;
+    background:#eee;
+    border:1px solid #ebebeb;
+    cursor:pointer;
+    color:black;
+    line-height:2rem;
+    text-align:center;
+    font-weight:bold;
+}
+input{
+    width:33%;
+    background:#eee;
+    -moz-appearance: textfield;
+    background:white;
+    text-align:center;
+    font-weight:bold;
+}
+`
