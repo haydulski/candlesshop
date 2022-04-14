@@ -70,7 +70,7 @@ function Navbar() {
                 </Column>
                 <Column align="right">
                     <SearchIcon />
-                    <Account />
+                    <Link to="/my-account"><Account /></Link>
                     <Cart />
                 </Column>
 

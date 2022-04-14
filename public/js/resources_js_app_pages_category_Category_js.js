@@ -11,15 +11,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Container": () => (/* binding */ Container)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _imgs_main_page_header_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../imgs/main-page-header.jpg */ "./resources/js/app/imgs/main-page-header.jpg");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 var _templateObject;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].section(_templateObject || (_templateObject = _taggedTemplateLiteral(["\npadding:10% 8%;\ntext-align:center;\nh1{\n    color:", ";\n    text-transform: capitalize;\n}\n"])), function (_ref) {
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].section(_templateObject || (_templateObject = _taggedTemplateLiteral(["\npadding:10% 8%;\ntext-align:center;\nh1{\n    color:", ";\n    text-transform: capitalize;\n}\n"])), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.main;
 });
