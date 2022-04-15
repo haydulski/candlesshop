@@ -29,4 +29,20 @@ justify-content:${(props) => props.align};
     width:80px;
     height:auto;
 }
+ div.cart-icon{
+    position:relative;
+    span.cart-qty{
+        position:absolute;
+        top:0;
+        left:2rem;
+        width:1rem;
+        height:1rem;
+        text-align:center;
+        font-size:.6rem;
+        border-radius:50%;
+        background:lightgray;
+        color:white;
+        line-height:1rem;
+    }
+}
 `

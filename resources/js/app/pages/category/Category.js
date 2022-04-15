@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 const ProductsGrid = React.lazy(() => import('../../components/products-grid/ProductsGrid'))
 
 function Category() {
-    console.log('work');
+
     let { slug } = useParams()
     let catTitle = slug.split('-')
     return (

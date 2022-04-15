@@ -20,10 +20,10 @@ function Footer() {
                 </div>
                 <div className="links">
                     <h5>Products</h5>
-                    <p><Link to="/products/woody">Woody</Link></p>
-                    <p>Floral</p>
-                    <p>Fresh</p>
-                    <p>Oriental</p>
+                    <p><Link to="/category/woody-category">Woody</Link></p>
+                    <p><Link to="/category/floral-category">Floral</Link></p>
+                    <p><Link to="/category/fresh-category">Fresh</Link></p>
+                    <p><Link to="/category/oriental-category">Oriental</Link></p>
                 </div>
                 <div className="links">
                     <h5>Check socials</h5>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { NavContainer, Nav, Column } from './Navbar.css'
 import { MenuBar } from '../../imgs/menu-icon.js'
@@ -6,18 +6,35 @@ import { Cart } from '../../imgs/cart-icon.js'
 import Logo from '../../imgs/logo-icon.png'
 import { Account } from '../../imgs/account-svg'
 import { SearchIcon } from '../../imgs/search-icon'
-import Menu from '../menu/Menu';
-import { gsap } from 'gsap/all';
+import Menu from '../menu/Menu'
+import { gsap } from 'gsap/all'
+import { connect } from 'react-redux'
+import { setCart } from '../../redux/actions/shopActions'
+import { fetchProductsAction } from '../../redux/actions/productActions'
 
-function Navbar() {
+function Navbar({ loaded, qty, products,
+    setCart, fetchProductsAction }) {
 
-    const [clickedMenu, setClickedMenu] = useState(false);
-    const location = useLocation();
-    const t1 = gsap.timeline({ paused: true });
-    const mmm = useRef(null);
+    const [clickedMenu, setClickedMenu] = useState(false)
+    const location = useLocation()
+    const t1 = gsap.timeline({ paused: true })
+    const menuRef = useRef(null)
 
     useEffect(() => {
-        t1.to(mmm.current, .5, {
+        if (products.length < 1) {
+            fetchProductsAction()
+        }
+    }, [fetchProductsAction])
+
+    useEffect(() => {
+        if (loaded === 'no') {
+            const cartJson = localStorage.getItem('cart')
+            setCart(cartJson)
+        }
+    }, [setCart])
+
+    useEffect(() => {
+        t1.to(menuRef.current, .5, {
             top: 0,
         });
 
@@ -30,16 +47,16 @@ function Navbar() {
         );
 
         t1.reverse();
-        const menuTrigger = document.querySelector('svg.menu-trigger');
-        const closeTrigger = document.querySelector('svg.menu-close-trigger');
+        const menuTrigger = document.querySelector('svg.menu-trigger')
+        const closeTrigger = document.querySelector('svg.menu-close-trigger')
 
         const toggleMenuView = () => {
-            t1.reversed(!t1.reversed());
+            t1.reversed(!t1.reversed())
         }
 
 
-        menuTrigger.addEventListener("click", toggleMenuView);
-        closeTrigger.addEventListener("click", toggleMenuView);
+        menuTrigger.addEventListener("click", toggleMenuView)
+        closeTrigger.addEventListener("click", toggleMenuView)
 
         return () => {
             menuTrigger.removeEventListener("click", toggleMenuView)
@@ -71,13 +88,21 @@ function Navbar() {
                 <Column align="right">
                     <SearchIcon />
                     <Link to="/my-account"><Account /></Link>
-                    <Cart />
+                    <div className='cart-icon'>
+                        <Link to="/cart"><Cart /></Link>
+                        <span className='cart-qty'>{qty}</span>
+                    </div>
+
                 </Column>
 
             </Nav>
         </NavContainer>
-        <Menu click={handleClick} menuref={mmm} />
+        <Menu click={handleClick} menuref={menuRef} />
     </>);
 }
 
-export default Navbar;
+export default connect(state => ({
+    products: state.productsState.products,
+    loaded: state.shop.cartLoading,
+    qty: state.shop.cartQty
+}), { fetchProductsAction, setCart })(Navbar)

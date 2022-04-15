@@ -48,8 +48,6 @@ var ProductsGrid = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.lazy(function
 });
 
 function Category() {
-  console.log('work');
-
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
       slug = _useParams.slug;
 
