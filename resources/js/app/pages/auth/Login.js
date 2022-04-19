@@ -23,7 +23,7 @@ function Login({ isLogged, setUser }) {
                 setUser(response.data)
                 history('/my-account', { replace: true })
             }).catch((err) => {
-                history.push('/user-login')
+                history('/user-login', { replace: true })
             });
         }).catch((err) => {
             setEmail('')

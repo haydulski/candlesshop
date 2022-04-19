@@ -59,7 +59,9 @@ function UserAccount(_ref) {
     _services_axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('/user').then(function (response) {
       setUser(response.data);
     })["catch"](function (err) {
-      history.push('/user-login');
+      navigate('/user-login', {
+        replace: true
+      });
     });
   };
 

@@ -6854,6 +6854,9 @@ var Login = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.lazy(function () {
 var Cart = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.lazy(function () {
   return __webpack_require__.e(/*! import() */ "resources_js_app_pages_cart_CartPage_js").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/cart/CartPage */ "./resources/js/app/pages/cart/CartPage.js"));
 });
+var Order = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.lazy(function () {
+  return __webpack_require__.e(/*! import() */ "resources_js_app_pages_order_Order_js").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/order/Order */ "./resources/js/app/pages/order/Order.js"));
+});
 var store = (0,_redux_store__WEBPACK_IMPORTED_MODULE_8__["default"])();
 /*
 const testCart = [{
@@ -6866,58 +6869,60 @@ const testCart = [{
 localStorage.setItem('cart', JSON.stringify(testCart))
 */
 
-function App(_ref) {
-  var cart = _ref.cart;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Suspense, {
-    fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
-      children: "Page is loading..."
-    }),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.BrowserRouter, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(styled_components__WEBPACK_IMPORTED_MODULE_14__.ThemeProvider, {
-        theme: _styles_theme__WEBPACK_IMPORTED_MODULE_4__.theme,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_styles_globalStyles__WEBPACK_IMPORTED_MODULE_5__.GlobalStyle, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_navbar_navbar__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Routes, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/products/:slug",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(SingleProduct, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/category/:slug",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Category, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/shop",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Shop, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/user-login",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Login, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/cart",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Cart, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            path: "/my-account",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_services_ProtectedRoute__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(UserAccount, {})
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            exact: true,
-            path: "/",
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Main, {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
-            element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
-              children: "Adres nie istnieje"
-            })
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_footer_footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_10__.ToastContainer, {})]
+function App() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_7__.Provider, {
+    store: store,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Suspense, {
+      fallback: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
+        children: "Page is loading..."
+      }),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.BrowserRouter, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(styled_components__WEBPACK_IMPORTED_MODULE_14__.ThemeProvider, {
+          theme: _styles_theme__WEBPACK_IMPORTED_MODULE_4__.theme,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_styles_globalStyles__WEBPACK_IMPORTED_MODULE_5__.GlobalStyle, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_navbar_navbar__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Routes, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/products/:slug",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(SingleProduct, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/category/:slug",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Category, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/shop",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Shop, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/user-login",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Login, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/cart",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Cart, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/order",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Order, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              path: "/my-account",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_services_ProtectedRoute__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(UserAccount, {})
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              exact: true,
+              path: "/",
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Main, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+              element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("p", {
+                children: "Adres nie istnieje"
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_footer_footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_toastify__WEBPACK_IMPORTED_MODULE_10__.ToastContainer, {})]
+    })
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
 if (document.getElementById('main-root')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_redux__WEBPACK_IMPORTED_MODULE_7__.Provider, {
-    store: store,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(App, {})
-  }), document.getElementById('main-root'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(App, {}), document.getElementById('main-root'));
 }
 
 /***/ }),
@@ -7484,7 +7489,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n", "\n*{\n    margin:0;\n    padding:0;\n}\nbody{\n    background:white;\n    font-size:16px;\n    overflow-x:hidden;\n}\na{\n    text-decoration:none;\n    color:inherit;\n}\nh1,h2{\n    font-family:'Josefin Sans', sans-serif;\n}\nh4,h5,h6,p,span,div{\n    font-family: 'Jost', sans-serif;\n}\nh1{\n    font-size:4rem;\n}\n\n"])), styled_normalize__WEBPACK_IMPORTED_MODULE_0__.normalize);
+var GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n", "\n*{\n    margin:0;\n    padding:0;\n}\nbody{\n    background:white;\n    font-size:16px;\n    overflow-x:hidden;\n    box-sizing:border-box;\n}\na{\n    text-decoration:none;\n    color:inherit;\n}\nh1,h2{\n    font-family:'Josefin Sans', sans-serif;\n}\nh4,h5,h6,p,span,div{\n    font-family: 'Jost', sans-serif;\n}\nh1{\n    font-size:4rem;\n}\n.btn{\n    padding:.5rem 1rem;\n    color:white;\n    background-color:#F0303D;\n    font-weight:bold;\n    border:none;\n    cursor:pointer;\n&:hover{\n    background-color:#F24E1E;\n}\n}\n\n"])), styled_normalize__WEBPACK_IMPORTED_MODULE_0__.normalize);
 
 /***/ }),
 
@@ -87252,7 +87257,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_app_pages_main_Main_js":1,"resources_js_app_pages_singleProduct_SingleProduct_js":1,"resources_js_app_pages_shop_Shop_js":1,"resources_js_app_pages_category_Category_js":1,"resources_js_app_pages_userAccount_UserAccount_js":1,"resources_js_app_pages_auth_Login_js":1,"resources_js_app_pages_cart_CartPage_js":1,"resources_js_app_components_products-grid_ProductsGrid_js":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_app_pages_main_Main_js":1,"resources_js_app_pages_singleProduct_SingleProduct_js":1,"resources_js_app_pages_shop_Shop_js":1,"resources_js_app_pages_category_Category_js":1,"resources_js_app_pages_userAccount_UserAccount_js":1,"resources_js_app_pages_auth_Login_js":1,"resources_js_app_pages_cart_CartPage_js":1,"resources_js_app_pages_order_Order_js":1,"resources_js_app_components_products-grid_ProductsGrid_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

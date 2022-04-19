@@ -11,6 +11,7 @@ body{
     background:white;
     font-size:16px;
     overflow-x:hidden;
+    box-sizing:border-box;
 }
 a{
     text-decoration:none;
@@ -24,6 +25,17 @@ h4,h5,h6,p,span,div{
 }
 h1{
     font-size:4rem;
+}
+.btn{
+    padding:.5rem 1rem;
+    color:white;
+    background-color:#F0303D;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+&:hover{
+    background-color:#F24E1E;
+}
 }
 
 `

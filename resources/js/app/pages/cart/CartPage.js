@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Container, Row, Col } from './CartPage.css'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { removeFromCart } from '../../redux/actions/shopActions'
 
 function CartPage({ cart, removeFromCart }) {
@@ -20,6 +21,18 @@ function CartPage({ cart, removeFromCart }) {
             </tr>
         )
     }), [cart])
+
+    const totalNetto = useMemo(() => {
+        let sum = 0;
+        cart.forEach(item => {
+            sum += (item.price * item.qty)
+        })
+        return sum
+    }, [cart])
+
+    const totalBrutto = useMemo(() => {
+        return (totalNetto + (totalNetto * .23)).toFixed(2)
+    }, [totalNetto])
 
     return (
         <Container>
@@ -41,7 +54,26 @@ function CartPage({ cart, removeFromCart }) {
                             <CartItems />
                         </tbody>
                     </table>
+                    <table className='summary'>
+                        <tbody>
+                            <tr>
+                                <td>Total price netto:</td>
+                                <td>${totalNetto}</td>
+                            </tr>
+                            <tr>
+                                <td>Tax:</td>
+                                <td>23%</td>
+                            </tr>
+                            <tr>
+                                <td>Total price brutto:</td>
+                                <td>${totalBrutto}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </Col>
+            </Row>
+            <Row>
+                <Link to='/order'><button className='btn btn-primary'>Go to Order</button></Link>
             </Row>
 
         </Container>

@@ -20,6 +20,7 @@ const Category = React.lazy(() => import('./pages/category/Category'))
 const UserAccount = React.lazy(() => import('./pages/userAccount/UserAccount'))
 const Login = React.lazy(() => import('./pages/auth/Login'))
 const Cart = React.lazy(() => import('./pages/cart/CartPage'))
+const Order = React.lazy(() => import('./pages/order/Order'))
 
 const store = configureStore()
 /*
@@ -32,40 +33,42 @@ const testCart = [{
 }]
 localStorage.setItem('cart', JSON.stringify(testCart))
 */
-function App({ cart }) {
+function App() {
 
     return (
+        <Provider store={store}>
+            <Suspense fallback={<p>Page is loading...</p>}>
+                <Router>
+                    <ThemeProvider theme={theme}>
+                        <GlobalStyle />
+                        <Navbar />
+                        <Switch>
 
-        <Suspense fallback={<p>Page is loading...</p>}>
-            <Router>
-                <ThemeProvider theme={theme}>
-                    <GlobalStyle />
-                    <Navbar />
-                    <Switch>
+                            <Route path="/products/:slug" element={<SingleProduct />} />
+                            <Route path="/category/:slug" element={<Category />} />
+                            <Route path="/shop" element={<Shop />} />
+                            <Route path="/user-login" element={<Login />} />
+                            <Route path="/cart" element={<Cart />} />
+                            <Route path="/order" element={<Order />} />
+                            <Route path="/my-account" element={<ProtectedRoute>
+                                <UserAccount />
+                            </ProtectedRoute>} />
 
-                        <Route path="/products/:slug" element={<SingleProduct />} />
-                        <Route path="/category/:slug" element={<Category />} />
-                        <Route path="/shop" element={<Shop />} />
-                        <Route path="/user-login" element={<Login />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/my-account" element={<ProtectedRoute>
-                            <UserAccount />
-                        </ProtectedRoute>} />
+                            <Route exact path="/" element={<Main />} />
+                            <Route element={<p>Adres nie istnieje</p>} />
 
-                        <Route exact path="/" element={<Main />} />
-                        <Route element={<p>Adres nie istnieje</p>} />
-
-                    </Switch>
-                    <Footer />
-                </ThemeProvider>
-            </Router >
-            <ToastContainer />
-        </Suspense>
+                        </Switch>
+                        <Footer />
+                    </ThemeProvider>
+                </Router >
+                <ToastContainer />
+            </Suspense>
+        </Provider>
     );
 }
 
 export default App;
 
 if (document.getElementById('main-root')) {
-    ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('main-root'));
+    ReactDOM.render(<App />, document.getElementById('main-root'));
 }

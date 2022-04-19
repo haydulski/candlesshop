@@ -11,6 +11,7 @@ h1{
     color:${({ theme }) => theme.colors.orange};
     font-size:6rem;
 }
+margin-bottom:5%;
 `
 export const Row = styled.div`
 background:#1DF2BA;
@@ -61,6 +62,14 @@ table{
         &:hover{
             background:${({ theme }) => theme.colors.orange};
         }
+    }
+}
+table.summary{
+    width:30%;
+    margin:5% 16% 0 auto;
+    border-top: 4px solid lightgray;
+    td:nth-child(1){
+        font-weight:bold;
     }
 }
 `

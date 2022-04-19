@@ -13,7 +13,7 @@ function UserAccount({ user, setUser, logoutUser }) {
         apiClient.get('/user').then(response => {
             setUser(response.data)
         }).catch((err) => {
-            history.push('/user-login')
+            navigate('/user-login', { replace: true })
         });
     }
     const logoutAction = () => {

@@ -100,7 +100,9 @@ function Login(_ref) {
           replace: true
         });
       })["catch"](function (err) {
-        history.push('/user-login');
+        history('/user-login', {
+          replace: true
+        });
       });
     })["catch"](function (err) {
       setEmail('');
