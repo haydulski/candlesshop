@@ -16,9 +16,8 @@ export const setUser = (data) => (dispatch) => {
 }
 
 export const logoutUser = () => async (dispatch) => {
-    localStorage.removeItem('userId')
-    try {
 
+    try {
         await axios.post('/logout');
         dispatch({ type: USER_LOGOUT.USER_LOGOUT_SUCCESS })
 

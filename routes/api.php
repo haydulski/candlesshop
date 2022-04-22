@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\Products\ProductController;
 use App\Http\Controllers\Api\v1\Categories\CategoryController;
+use App\Http\Controllers\Api\v1\Orders\OrderController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,9 @@ Route::prefix('v1')->group(function () {
     Route::controller(CategoryController::class)->group(function () {
         Route::get('categories', 'index');
         Route::get('categories/product', 'productcategories');
+    });
+    Route::controller(OrderController::class)->group(function () {
+        Route::post('new-order', 'store');
     });
 
 

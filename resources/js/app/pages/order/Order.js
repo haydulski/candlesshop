@@ -3,6 +3,8 @@ import { Container, Row, Col } from './Order.css'
 import { connect } from 'react-redux'
 import ClientForm from './ClientForm'
 import { Link } from 'react-router-dom'
+import clientApi from '../../services/axios'
+
 const LoginMsg = () => {
     return (
         <h4 className='msg-info'>
@@ -16,18 +18,18 @@ function Order({ cart, isLogged, user }) {
         name: '',
         surname: '',
         email: '',
-        phone: '',
+        mobile: '',
         street: '',
         post: '',
         city: '',
         province: '',
         country: '',
-        mess: ''
+        message: ''
     })
 
-    const [delivery, setDev] = useState(0);
-    const [order, setOrder] = useState(0);
-    const [payment, setPayment] = useState(0);
+    const [delivery, setDev] = useState('0');
+    const [order, setOrder] = useState('');
+    const [payment, setPayment] = useState('1');
 
     const OrderItems = useCallback(() => cart.map(item => {
         return (
@@ -58,8 +60,25 @@ function Order({ cart, isLogged, user }) {
     }
 
     const handlePlaceorder = () => {
-        console.log(data);
+        const form = {
+            cart: cart,
+            details: data,
+            netto: toString(netto),
+            brutto: totalBrutto(),
+            payment,
+            delivery
+        }
+
+        clientApi.post('/new-order', {
+            order_data: JSON.stringify(form)
+        }).then(res => {
+            console.log(res.data)
+        }
+        ).catch((err) => {
+            console.log(err.response.data);
+        })
     }
+
     useEffect(() => {
         setOrder(totalBrutto)
     }, [])
@@ -97,14 +116,14 @@ function Order({ cart, isLogged, user }) {
                     </div>
                     <div>
                         <h3>Delivery:</h3>
-                        <input type="radio" id="1" name="delivery" value="10" onClick={(e) => handleOrder(e)} />
+                        <input type="radio" id="1" name="delivery" value="10" onClick={(e) => handleOrder(e)} defaultChecked />
                         <label htmlFor="1">DPD delivery - $10</label><br />
                         <input type="radio" id="2" name="delivery" value="0" onClick={(e) => handleOrder(e)} />
                         <label htmlFor="2">On place - free</label>
                     </div>
                     <div>
                         <h3>Payment method:</h3>
-                        <input type="radio" id="1" name="payment" onClick={(e) => setPayment(e.target.id)} />
+                        <input type="radio" id="1" name="payment" onClick={(e) => setPayment(e.target.id)} defaultChecked />
                         <label htmlFor="1">Bank transfer</label><br />
                         <input type="radio" id="2" name="payment" onClick={(e) => setPayment(e.target.id)} />
                         <label htmlFor="2">PayPal</label>

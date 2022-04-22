@@ -7186,6 +7186,7 @@ function auth() {
       });
 
     case _enums_auth__WEBPACK_IMPORTED_MODULE_0__.USER_LOGOUT.USER_LOGOUT_SUCCESS:
+      localStorage.removeItem('userId');
       return _objectSpread(_objectSpread({}, state), {}, {
         isLogged: _enums_auth__WEBPACK_IMPORTED_MODULE_0__.IS_LOGGED.FALSE,
         user: [],
@@ -7426,18 +7427,17 @@ var protectedRoute = function protectedRoute(_ref) {
   var isLogged = _ref.isLogged,
       children = _ref.children;
 
-  if (localStorage.userId !== undefined && localStorage.userId.length > 0) {
+  if (localStorage.userId && localStorage.userId.length > 0) {
+    console.log('work login');
     return children;
-  }
-
-  if (!isLogged) {
+  } else if (!isLogged) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Navigate, {
       to: "/user-login",
       replace: true
     });
+  } else {
+    return children;
   }
-
-  return children;
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(function (state) {

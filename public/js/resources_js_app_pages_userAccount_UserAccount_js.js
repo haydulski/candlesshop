@@ -164,31 +164,30 @@ var logoutUser = function logoutUser() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              localStorage.removeItem('userId');
-              _context.prev = 1;
-              _context.next = 4;
+              _context.prev = 0;
+              _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/logout');
 
-            case 4:
+            case 3:
               dispatch({
                 type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOGOUT.USER_LOGOUT_SUCCESS
               });
-              _context.next = 10;
+              _context.next = 9;
               break;
 
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](1);
+            case 6:
+              _context.prev = 6;
+              _context.t0 = _context["catch"](0);
               dispatch({
                 type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOGOUT.USER_LOGOUT_FAILURE
               });
 
-            case 10:
+            case 9:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 7]]);
+      }, _callee, null, [[0, 6]]);
     }));
 
     return function (_x) {

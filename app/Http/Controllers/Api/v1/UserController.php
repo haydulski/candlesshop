@@ -21,7 +21,7 @@ class UserController extends Controller
                 'mobile' => $user->mobile,
             ], 200);
         } else {
-            return response()->json(['message' => 'Login error'], 401);
+            return response()->json("['message' => 'Login error']", 401);
         }
     }
 }

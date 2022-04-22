@@ -3,14 +3,16 @@ import { Navigate } from "react-router-dom"
 import { connect } from "react-redux"
 
 const protectedRoute = ({ isLogged, children }) => {
-    if (localStorage.userId !== undefined && localStorage.userId.length > 0) {
+    if (localStorage.userId && localStorage.userId.length > 0) {
+        console.log('work login');
         return children;
     }
-    if (!isLogged) {
+    else if (!isLogged) {
         return <Navigate to="/user-login" replace />;
-    }
+    } else {
 
-    return children;
+        return children;
+    }
 };
 
 export default connect(state => ({ isLogged: state.auth.isLogged }))(protectedRoute)

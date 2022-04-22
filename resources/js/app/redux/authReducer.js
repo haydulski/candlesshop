@@ -28,6 +28,7 @@ export default function auth(state = intialState, action) {
                 loading: AUTH_STATE.FAILURE
             }
         case USER_LOGOUT.USER_LOGOUT_SUCCESS:
+            localStorage.removeItem('userId')
             return {
                 ...state,
                 isLogged: IS_LOGGED.FALSE,
