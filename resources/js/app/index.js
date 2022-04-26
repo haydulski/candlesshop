@@ -49,7 +49,7 @@ function App() {
                             <Route path="/shop" element={<Shop />} />
                             <Route path="/user-login" element={<Login />} />
                             <Route path="/cart" element={<Cart />} />
-                            <Route path="/order" element={<Order />} />
+                            <Route path="/order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
                             <Route path="/my-account" element={<ProtectedRoute>
                                 <UserAccount />
                             </ProtectedRoute>} />
@@ -61,7 +61,7 @@ function App() {
                         <Footer />
                     </ThemeProvider>
                 </Router >
-                <ToastContainer />
+                <ToastContainer theme="colored" />
             </Suspense>
         </Provider>
     );

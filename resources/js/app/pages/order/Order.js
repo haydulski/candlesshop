@@ -4,6 +4,17 @@ import { connect } from 'react-redux'
 import ClientForm from './ClientForm'
 import { Link } from 'react-router-dom'
 import clientApi from '../../services/axios'
+import { toast } from 'react-toastify';
+
+const notify = (msg) => toast.error(msg, {
+    position: "top-left",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+});
 
 const LoginMsg = () => {
     return (
@@ -58,25 +69,39 @@ function Order({ cart, isLogged, user }) {
         setDev(value)
         setOrder(totalOrder.toFixed(2))
     }
-
-    const handlePlaceorder = () => {
-        const form = {
-            cart: cart,
-            details: data,
-            netto: toString(netto),
-            brutto: totalBrutto(),
-            payment,
-            delivery
-        }
-
-        clientApi.post('/new-order', {
-            order_data: JSON.stringify(form)
-        }).then(res => {
-            console.log(res.data)
-        }
-        ).catch((err) => {
-            console.log(err.response.data);
+    const validateForm = () => {
+        const reqFields = ['name', 'surname', 'mobile', 'email', 'city', 'country', 'street']
+        const emptyFields = []
+        reqFields.forEach(field => {
+            if (data[field] === '') emptyFields.push(field)
         })
+        return emptyFields
+    }
+    const handlePlaceorder = () => {
+        const validation = validateForm()
+        if (validation.length > 0) {
+            let msg = 'Please fill fields: ' + validation.join(', ') + '. Then place order.'
+            notify(msg);
+            return
+        }
+
+        // const form = {
+        //     cart: cart,
+        //     details: data,
+        //     netto: toString(netto),
+        //     brutto: totalBrutto(),
+        //     payment,
+        //     delivery
+        // }
+
+        // clientApi.post('/new-order', {
+        //     order_data: JSON.stringify(form)
+        // }).then(res => {
+        //     console.log(res.data)
+        // }
+        // ).catch((err) => {
+        //     console.log(err.response.data);
+        // })
     }
 
     useEffect(() => {

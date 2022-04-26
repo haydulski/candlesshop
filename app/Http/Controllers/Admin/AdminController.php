@@ -26,8 +26,8 @@ class AdminController extends Controller
 
     public function myDetails(User $user): View
     {
-        $admin = $user->where('vendor', '=', '0')->get();
+        $admin = auth()->user();
 
-        return view('adminpanel.me', ['user' => $admin[0]]);
+        return view('adminpanel.me', ['user' => $admin]);
     }
 }

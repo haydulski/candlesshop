@@ -52,7 +52,7 @@ class OrderController extends Controller
                         $newItem->save();
             }
             
-            return response()->json($newOrder, 200);
+            return response()->json('Order accepted', 200);
         }
 
         return response()->json("User is not logged", 402);

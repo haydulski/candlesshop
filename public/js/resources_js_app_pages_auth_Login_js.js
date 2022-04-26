@@ -107,10 +107,17 @@ function Login(_ref) {
     })["catch"](function (err) {
       setEmail('');
       setPassword('');
-      console.log(err);
+      localStorage.removeItem('userId');
     });
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var userId = localStorage.getItem('userId');
+
+    if (userId) {
+      handleLogin();
+    }
+  }, []);
   return isLogged ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Navigate, {
     to: "/my-account",
     replace: true

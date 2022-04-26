@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -28,9 +28,17 @@ function Login({ isLogged, setUser }) {
         }).catch((err) => {
             setEmail('')
             setPassword('')
-            console.log(err);
+            localStorage.removeItem('userId')
         })
     }
+
+    useEffect(() => {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            handleLogin()
+        }
+    }, [])
+
     return isLogged ?
         <Navigate to='/my-account' replace />
         : (

@@ -29,22 +29,22 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         ->controller(ProductController::class)->group(function () {
 
             Route::get('/products', 'products')->name('products');
-            Route::post('/products', 'store')->name('product.store');
+            Route::post('/products', 'store')->name('product.store')->middleware('guestAdmin');
             Route::get('/products/add', 'add')->name('product.add');
             Route::get('/products/{id}', 'edit')->name('product.edit')->where('id', '[0-9]+');
-            Route::post('/products/{id}', 'update')->name('product.update')->where('id', '[0-9]+');
-            Route::delete('/products/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+');
+            Route::post('/products/{id}', 'update')->name('product.update')->where('id', '[0-9]+')->middleware('guestAdmin');
+            Route::delete('/products/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+')->middleware('guestAdmin');
         });
 
     Route::prefix('shop-admin')->name('admin.')
         ->controller(CategoryController::class)->group(function () {
 
             Route::get('/categories', 'index')->name('categories.all');
-            Route::post('/categories', 'store')->name('category.store');
+            Route::post('/categories', 'store')->name('category.store')->middleware('guestAdmin');
             Route::get('/categories/new', 'create')->name('category.new');
             Route::get('/categories/{id}', 'show')->name('category.show')->where('id', '[0-9]+');
-            Route::delete('/categories/{id}', 'destroy')->name('category.destroy')->where('id', '[0-9]+');
-            Route::post('/categories/{id}', 'update')->name('category.update')->where('id', '[0-9]+');
+            Route::delete('/categories/{id}', 'destroy')->name('category.destroy')->where('id', '[0-9]+')->middleware('guestAdmin');
+            Route::post('/categories/{id}', 'update')->name('category.update')->where('id', '[0-9]+')->middleware('guestAdmin');
         });
 
     Route::prefix('shop-admin')->name('admin.')
@@ -52,8 +52,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
             Route::get('/customers/{sorting?}', 'index')->name('customers.all');
             Route::get('/customer/{id}', 'show')->name('customer.show')->where('id', '[0-9]+');
-            Route::delete('/customer/{id}', 'destroy')->name('customer.destroy')->where('id', '[0-9]+');
-            Route::post('/customers/{id}', 'update')->name('customer.update')->where('id', '[0-9]+');
+            Route::delete('/customer/{id}', 'destroy')->name('customer.destroy')->where('id', '[0-9]+')->middleware('guestAdmin');
+            Route::post('/customers/{id}', 'update')->name('customer.update')->where('id', '[0-9]+')->middleware('guestAdmin');
         });
 
     Route::prefix('shop-admin')->name('admin.')
@@ -61,13 +61,14 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
             Route::get('/orders', 'index')->name('orders.all');
             Route::get('/orders/new', 'create')->name('order.create');
-            Route::post('/orders', 'store')->name('order.store');
+            Route::post('/orders', 'store')->name('order.store')->middleware('guestAdmin');
             Route::get('/orders/{id}', 'show')->name('order.show')->where('id', '[0-9]+');
-            Route::delete('/orders/{id}', 'destroy')->name('order.destroy')->where('id', '[0-9]+');
-            Route::post('/orders/{id}', 'update')->name('order.update')->where('id', '[0-9]+');
-            Route::post('/orders/status/{id}', 'status')->name('order.status.update')->where('id', '[0-9]+');
+            Route::delete('/orders/{id}', 'destroy')->name('order.destroy')->where('id', '[0-9]+')->middleware('guestAdmin');
+            Route::post('/orders/{id}', 'update')->name('order.update')->where('id', '[0-9]+')->middleware('guestAdmin');
+            Route::post('/orders/status/{id}', 'status')->name('order.status.update')->where('id', '[0-9]+')->middleware('guestAdmin');
         });
 });
 Route::view('/{path?}', 'welcome');
 Route::view('/products/{path?}', 'welcome');
 Route::view('/category/{path?}', 'welcome');
+Route::resource('/damian', AdminController::class);
