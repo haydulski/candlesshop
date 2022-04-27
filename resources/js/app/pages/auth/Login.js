@@ -32,13 +32,6 @@ function Login({ isLogged, setUser }) {
         })
     }
 
-    useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-            handleLogin()
-        }
-    }, [])
-
     return isLogged ?
         <Navigate to='/my-account' replace />
         : (

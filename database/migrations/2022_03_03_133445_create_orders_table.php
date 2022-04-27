@@ -26,8 +26,8 @@ class CreateOrdersTable extends Migration
             $table->float('total_price', 8, 2)->nullable();
             $table->string('name', 50);
             $table->string('surname', 50);
-            $table->string('mobile', 15)->unique();
-            $table->string('email', 50)->unique();
+            $table->string('mobile', 15);
+            $table->string('email', 50);
             $table->string('street', 50);
             $table->string('city', 50);
             $table->string('province', 50);

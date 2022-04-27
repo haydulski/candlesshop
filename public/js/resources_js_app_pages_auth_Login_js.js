@@ -111,13 +111,6 @@ function Login(_ref) {
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var userId = localStorage.getItem('userId');
-
-    if (userId) {
-      handleLogin();
-    }
-  }, []);
   return isLogged ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Navigate, {
     to: "/my-account",
     replace: true
@@ -152,89 +145,6 @@ function Login(_ref) {
 }, {
   setUser: _redux_actions_authActions__WEBPACK_IMPORTED_MODULE_4__.setUser
 })(Login));
-
-/***/ }),
-
-/***/ "./resources/js/app/redux/actions/authActions.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/app/redux/actions/authActions.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setUser": () => (/* binding */ setUser),
-/* harmony export */   "logoutUser": () => (/* binding */ logoutUser)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _enums_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../enums/auth */ "./resources/js/app/enums/auth.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-var setUser = function setUser(data) {
-  return function (dispatch) {
-    dispatch({
-      type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOAD.USER_LOAD_REQUEST
-    });
-
-    try {
-      dispatch({
-        type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOAD.USER_LOAD_SUCCESS,
-        payload: data
-      });
-    } catch (error) {
-      dispatch({
-        type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOAD.USER_LOAD_FAILURE
-      });
-    }
-  };
-};
-var logoutUser = function logoutUser() {
-  return /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/logout');
-
-            case 3:
-              dispatch({
-                type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOGOUT.USER_LOGOUT_SUCCESS
-              });
-              _context.next = 9;
-              break;
-
-            case 6:
-              _context.prev = 6;
-              _context.t0 = _context["catch"](0);
-              dispatch({
-                type: _enums_auth__WEBPACK_IMPORTED_MODULE_1__.USER_LOGOUT.USER_LOGOUT_FAILURE
-              });
-
-            case 9:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 6]]);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
 
 /***/ })
 

@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="card">
+    <div class="card mt-5">
         <h5 class="card-header"></h5>
         <div class="card-body">
             <ul>

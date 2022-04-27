@@ -31,7 +31,7 @@
                         </td>
                         <td>{{ $order->sub_total }} zł netto</td>
                         <td>{{ $order->shipping }} zł netto</td>
-                        <td>{{ $order->tax }}%</td>
+                        <td>{{ floatval($order->tax)*100 }}%</td>
                         <td>{{ $order->total_price }} zł brutto</td>
                         <td>
                             {{ $order->created_at }}

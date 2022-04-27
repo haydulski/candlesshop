@@ -234,7 +234,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var notify = function notify(msg) {
   return react_toastify__WEBPACK_IMPORTED_MODULE_5__.toast.error(msg, {
-    position: "top-right",
+    position: "top-left",
     autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -336,23 +336,24 @@ function Order(_ref) {
       var msg = 'Please fill fields: ' + validation.join(', ') + '. Then place order.';
       notify(msg);
       return;
-    } // const form = {
-    //     cart: cart,
-    //     details: data,
-    //     netto: toString(netto),
-    //     brutto: totalBrutto(),
-    //     payment,
-    //     delivery
-    // }
-    // clientApi.post('/new-order', {
-    //     order_data: JSON.stringify(form)
-    // }).then(res => {
-    //     console.log(res.data)
-    // }
-    // ).catch((err) => {
-    //     console.log(err.response.data);
-    // })
+    }
 
+    var form = {
+      cart: cart,
+      details: data,
+      netto: String(netto),
+      brutto: totalBrutto(),
+      payment: payment,
+      delivery: delivery
+    };
+    console.log(form);
+    _services_axios__WEBPACK_IMPORTED_MODULE_4__["default"].post('/new-order', {
+      order_data: JSON.stringify(form)
+    }).then(function (res) {
+      console.log(res.data);
+    })["catch"](function (err) {
+      console.log(err.response.data);
+    });
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {

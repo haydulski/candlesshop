@@ -1,33 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
-import apiClient from '../../services/axios';
-import { setUser, logoutUser } from '../../redux/actions/authActions'
+import { logoutUser } from '../../redux/actions/authActions'
 import { Container, Column } from './UserAccount.css'
 import { useNavigate } from 'react-router-dom'
 
-function UserAccount({ user, setUser, logoutUser }) {
+function UserAccount({ user, logoutUser }) {
 
     const navigate = useNavigate()
 
-    const getDetails = () => {
-        apiClient.get('/user').then(response => {
-            setUser(response.data)
-        }).catch((err) => {
-            navigate('/user-login', { replace: true })
-        });
-    }
     const logoutAction = () => {
-
         logoutUser()
-        navigate('/user-login', { replace: true })
+        navigate('/', { replace: true })
     }
-
-    useEffect(() => {
-        if (user.length === 0) {
-            console.log('work');
-            getDetails()
-        }
-    }, [setUser])
 
     return (
         <Container>
@@ -48,4 +32,4 @@ function UserAccount({ user, setUser, logoutUser }) {
 
 export default connect(state => ({
     user: state.auth.user,
-}), { setUser, logoutUser })(UserAccount);
+}), { logoutUser })(UserAccount);

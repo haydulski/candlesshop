@@ -52,6 +52,6 @@
             </table>
             {{ $orders->links() }}
         </div>
-        <a href="{{ route('admin.order.create') }}" class="btn btn-info mt-5 mb-5">Add order</a>
+        {{-- <a href="{{ route('admin.order.create') }}" class="btn btn-info mt-5 mb-5">Add order</a> --}}
     </div>
 @endsection

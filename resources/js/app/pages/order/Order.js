@@ -85,23 +85,23 @@ function Order({ cart, isLogged, user }) {
             return
         }
 
-        // const form = {
-        //     cart: cart,
-        //     details: data,
-        //     netto: toString(netto),
-        //     brutto: totalBrutto(),
-        //     payment,
-        //     delivery
-        // }
-
-        // clientApi.post('/new-order', {
-        //     order_data: JSON.stringify(form)
-        // }).then(res => {
-        //     console.log(res.data)
-        // }
-        // ).catch((err) => {
-        //     console.log(err.response.data);
-        // })
+        const form = {
+            cart: cart,
+            details: data,
+            netto: String(netto),
+            brutto: totalBrutto(),
+            payment,
+            delivery
+        }
+        console.log(form);
+        clientApi.post('/new-order', {
+            order_data: JSON.stringify(form)
+        }).then(res => {
+            console.log(res.data)
+        }
+        ).catch((err) => {
+            console.log(err.response.data);
+        })
     }
 
     useEffect(() => {

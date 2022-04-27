@@ -19,7 +19,7 @@
                 <li>Out of stock products: <b>{{ $dbData['outOfStock'] }}</b></li>
             </ul>
 
-            <a href="#" class="btn btn-light">Manage orders</a>
+            <a href="{{route('admin.orders.all')}}" class="btn btn-light">Manage orders</a>
         </div>
     </div>
 @endsection
