@@ -1,4 +1,4 @@
-import { SET_CART, ADD_PRODUCT, REMOVE_PRODUCT } from '../enums/shop'
+import { SET_CART, ADD_PRODUCT, REMOVE_PRODUCT, ORDER } from '../enums/shop'
 
 const initialState = {
     cart: [],
@@ -58,6 +58,13 @@ export default function shop(state = initialState, action) {
             return {
                 ...state,
                 updates: 'failed'
+            }
+        case ORDER.PLACE_ORDER_SUCCESS:
+            return {
+                ...state,
+                cart: [],
+                cartQty: 0,
+                cartLoading: 'no',
             }
 
         default:

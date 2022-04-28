@@ -19,7 +19,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].section(_templateObject || (_templateObject = _taggedTemplateLiteral(["\nmin-height:30vh;\nmin-width:100%;\ndisplay:flex;\njustify-contant:center;\npadding-top:10vh;\n\n"])));
-var Column = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:50%;\nmargin:3rem;\nbackground:lightgray;\nborder-radius:6px;\nmin-height:30%;\npadding:2rem;\nh3{\n    font-size:2rem;\n}\n&.second{\n    padding-top:4rem;\n}\np {\n    margin:1rem 0;\n}\n"])));
+var Column = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:50%;\nmargin:3rem;\nbackground:lightgray;\nborder-radius:6px;\nmin-height:30%;\npadding:2rem;\nh3{\n    font-size:2rem;\n}\n&.second{\n    padding-top:4rem;\n    ul{\n        list-style:none;\n        margin-top:3rem;\n        li{\n            line-height:2rem;\n        }\n    }\n}\np {\n    margin:1rem 0;\n}\n"])));
 
 /***/ }),
 
@@ -46,6 +46,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var orderStatusName = function orderStatusName(id) {
+  switch (id) {
+    case 1:
+      return 'New';
+
+    case 2:
+      return 'Checkout';
+
+    case 3:
+      return 'Paid';
+
+    case 4:
+      return 'Failed';
+
+    case 5:
+      return 'Shipped';
+
+    case 6:
+      return 'Delivered';
+
+    case 7:
+      return 'Returned';
+
+    case 8:
+      return 'Complete';
+
+    default:
+      return 'Undefined';
+  }
+};
 
 function UserAccount(_ref) {
   var user = _ref.user,
@@ -76,11 +107,18 @@ function UserAccount(_ref) {
         onClick: logoutAction,
         children: "Log out"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_UserAccount_css__WEBPACK_IMPORTED_MODULE_3__.Column, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_UserAccount_css__WEBPACK_IMPORTED_MODULE_3__.Column, {
       className: "second",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
         children: "My shoppings:"
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+        children: user.orders.map(function (order, key) {
+          var date = new Date(order['created_at']);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+            children: [date.toISOString().split('T')[0], " - Order id: ", order['id'], ", status: ", orderStatusName(order['status'])]
+          }, key);
+        })
+      })]
     })]
   });
 }

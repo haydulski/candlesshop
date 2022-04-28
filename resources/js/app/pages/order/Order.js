@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import ClientForm from './ClientForm'
 import { Link } from 'react-router-dom'
 import clientApi from '../../services/axios'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
+import { placeOrder } from '../../redux/actions/shopActions'
 
 const notify = (msg) => toast.error(msg, {
     position: "top-left",
@@ -24,7 +25,7 @@ const LoginMsg = () => {
     )
 }
 
-function Order({ cart, isLogged, user }) {
+function Order({ cart, isLogged, user, placeOrder }) {
     const [data, setData] = useState({
         name: '',
         surname: '',
@@ -93,15 +94,7 @@ function Order({ cart, isLogged, user }) {
             payment,
             delivery
         }
-        console.log(form);
-        clientApi.post('/new-order', {
-            order_data: JSON.stringify(form)
-        }).then(res => {
-            console.log(res.data)
-        }
-        ).catch((err) => {
-            console.log(err.response.data);
-        })
+        placeOrder(form);
     }
 
     useEffect(() => {
@@ -170,6 +163,6 @@ export default connect(state => ({
     cart: state.shop.cart,
     isLogged: state.auth.isLogged,
     user: state.auth.user
-})
+}), { placeOrder }
 
 )(Order);

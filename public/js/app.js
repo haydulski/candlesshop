@@ -6599,7 +6599,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ADD_PRODUCT": () => (/* binding */ ADD_PRODUCT),
 /* harmony export */   "REMOVE_PRODUCT": () => (/* binding */ REMOVE_PRODUCT),
-/* harmony export */   "SET_CART": () => (/* binding */ SET_CART)
+/* harmony export */   "SET_CART": () => (/* binding */ SET_CART),
+/* harmony export */   "ORDER": () => (/* binding */ ORDER)
 /* harmony export */ });
 var ADD_PRODUCT = {
   ADD_PRODUCT_REQUEST: "ADD_PRODUCT_REQUEST",
@@ -6615,6 +6616,10 @@ var SET_CART = {
   SET_CART_REQUEST: "SET_CART_REQUEST",
   SET_CART_SUCCESS: "SET_CART_SUCCESS",
   SET_CART_FAILURE: "SET_CART_FAILURE"
+};
+var ORDER = {
+  PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
+  PLACE_ORDER_FAILURE: "PLACE_ORDER_FAILURE"
 };
 
 /***/ }),
@@ -7097,10 +7102,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setCart": () => (/* binding */ setCart),
 /* harmony export */   "addProductToCart": () => (/* binding */ addProductToCart),
-/* harmony export */   "removeFromCart": () => (/* binding */ removeFromCart)
+/* harmony export */   "removeFromCart": () => (/* binding */ removeFromCart),
+/* harmony export */   "placeOrder": () => (/* binding */ placeOrder)
 /* harmony export */ });
 /* harmony import */ var _enums_shop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../enums/shop */ "./resources/js/app/enums/shop.js");
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var _services_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/axios */ "./resources/js/app/services/axios.js");
+
 
 
 
@@ -7221,6 +7229,24 @@ var removeFromCart = function removeFromCart(cart, id) {
         });
       }
     }
+  };
+};
+var placeOrder = function placeOrder(orderData) {
+  return function (dispatch) {
+    _services_axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/new-order', {
+      order_data: JSON.stringify(orderData)
+    }).then(function (res) {
+      console.log(res.data);
+      dispatch({
+        type: _enums_shop__WEBPACK_IMPORTED_MODULE_0__.ORDER.PLACE_ORDER_SUCCESS
+      });
+      notify('Order was placed, soon you should get confirmation email');
+    })["catch"](function (err) {
+      console.log(err.response.data);
+      dispatch({
+        type: _enums_shop__WEBPACK_IMPORTED_MODULE_0__.ORDER.PLACE_ORDER_FAILURE
+      });
+    });
   };
 };
 
@@ -7452,6 +7478,13 @@ function shop() {
     case _enums_shop__WEBPACK_IMPORTED_MODULE_0__.REMOVE_PRODUCT.REMOVE_PRODUCT_FAILURE:
       return _objectSpread(_objectSpread({}, state), {}, {
         updates: 'failed'
+      });
+
+    case _enums_shop__WEBPACK_IMPORTED_MODULE_0__.ORDER.PLACE_ORDER_SUCCESS:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        cart: [],
+        cartQty: 0,
+        cartLoading: 'no'
       });
 
     default:

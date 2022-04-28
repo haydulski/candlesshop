@@ -1,5 +1,6 @@
-import { SET_CART, ADD_PRODUCT, REMOVE_PRODUCT } from "../../enums/shop"
-import { toast } from 'react-toastify';
+import { SET_CART, ADD_PRODUCT, REMOVE_PRODUCT, ORDER } from "../../enums/shop"
+import { toast } from 'react-toastify'
+import apiClient from "../../services/axios"
 
 const notify = (msg) => toast.success(msg, {
     position: "top-right",
@@ -104,5 +105,26 @@ export const removeFromCart = (cart, id) => (dispatch) => {
             dispatch({ type: REMOVE_PRODUCT.REMOVE_PRODUCT_FAILURE })
         }
     }
+
+}
+export const placeOrder = (orderData) => (dispatch) => {
+
+    apiClient.post('/new-order', {
+        order_data: JSON.stringify(orderData)
+
+    }).then(res => {
+        console.log(res.data)
+        dispatch({
+            type: ORDER.PLACE_ORDER_SUCCESS
+        })
+        notify('Order was placed, soon you should get confirmation email')
+    }
+    ).catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+            type: ORDER.PLACE_ORDER_FAILURE
+        })
+    })
+
 
 }
