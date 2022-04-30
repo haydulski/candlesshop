@@ -76,7 +76,7 @@ return [
 
     'prefix' => '',
 
-    'domain' => 'lareact.damian',
+    'domain' => 'lareact-test.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
