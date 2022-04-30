@@ -7595,7 +7595,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var apiClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: 'http://lareact.damian/api/v1',
+  baseURL: 'https://lareact-test.herokuapp.com/api/v1',
   withCredentials: true
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (apiClient);
