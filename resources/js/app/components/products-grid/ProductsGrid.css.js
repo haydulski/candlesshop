@@ -25,4 +25,10 @@ object-fit: cover;
     font-weight:medium;
     color:${({ color, theme }) => color = "green" ? theme.colors.green : theme.colors.orange}
 }
+@media(max-width:${({ theme }) => theme.rwd.xl}){
+    width:50%;
+}
+@media(max-width:${({ theme }) => theme.rwd.md}){
+    width:100%;
+}
 `

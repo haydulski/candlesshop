@@ -20,14 +20,27 @@ position:absolute;
 top:40%;
 left:8%;
 transform:translateY(-50%);
+@media(max-width:${({ theme }) => theme.rwd.xl}){
+    font-size:5rem;
+}
+@media(max-width:${({ theme }) => theme.rwd.md}){
+    font-size:3rem;
+}
 `
 export const Slider = styled.div`
 position:relative;
 min-height:100vh;
+@media(max-width:${({ theme }) => theme.rwd.xl}){
+    position:initial;
+}
 & section.slide{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    @media(max-width:${({ theme }) => theme.rwd.xl}){
+        position:initial;
+        padding:5rem 0;
+    }
 }
 `

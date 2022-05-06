@@ -19,7 +19,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\ndisplay:flex;\njustify-content:space-between;\nwidth:100%;\nflex-wrap:wrap;\n"])));
-var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:", ";\ntext-align:left;\nmargin-top:2rem;\n& img{\n    width: 90%;\nheight: 400px;\nobject-fit: cover;\n}\n& p.title{\n    font-size:1.75rem;\n    font-weight:bold;\n    color:", "\n}\n& p.price{\n    font-size:1.75rem;\n    font-weight:medium;\n    color:", "\n}\n"])), function (_ref) {
+var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:", ";\ntext-align:left;\nmargin-top:2rem;\n& img{\n    width: 90%;\nheight: 400px;\nobject-fit: cover;\n}\n& p.title{\n    font-size:1.75rem;\n    font-weight:bold;\n    color:", "\n}\n& p.price{\n    font-size:1.75rem;\n    font-weight:medium;\n    color:", "\n}\n@media(max-width:", "){\n    width:50%;\n}\n@media(max-width:", "){\n    width:100%;\n}\n"])), function (_ref) {
   var width = _ref.width;
   return width;
 }, function (_ref2) {
@@ -30,6 +30,12 @@ var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_tem
   var color = _ref3.color,
       theme = _ref3.theme;
   return color =  true ? theme.colors.green : 0;
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.rwd.xl;
+}, function (_ref5) {
+  var theme = _ref5.theme;
+  return theme.rwd.md;
 });
 
 /***/ }),

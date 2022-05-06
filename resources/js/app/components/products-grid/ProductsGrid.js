@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Container, Product } from './ProductsGrid.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Loader from '../loader/Loader'
 
 function ProductsGrid({ width, color, mode, products, limit, catName }) {
 
@@ -76,7 +77,7 @@ function ProductsGrid({ width, color, mode, products, limit, catName }) {
 
     return (
         <Container>
-            {products ? showProducts(mode) : <div>loading...</div>}
+            {products ? showProducts(mode) : <Loader />}
         </Container>
     );
 }

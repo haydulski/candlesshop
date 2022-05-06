@@ -1,9 +1,9 @@
 export const theme = {
     rwd: {
-        xl: '1024',
-        lg: '885',
-        md: '768',
-        xs: '380',
+        xl: '1024px',
+        lg: '885px',
+        md: '768px',
+        xs: '380px',
     },
     colors: {
         main: '#F0303D',

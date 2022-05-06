@@ -3,7 +3,7 @@ import menuBgImg from '../../imgs/menu-bg.jpg'
 
 export const MenuContainer = styled.div`
 position:fixed;
-top:-100vh;
+top:-101vh;
 left:0;
 width:100vw;
 height:100vh;
@@ -12,6 +12,10 @@ background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
 z-index:100;
+padding-bottom: 1vh;
+@media(max-width:${({ theme }) => theme.rwd.md}){
+    overflow-y:scroll;
+}
 `
 
 export const Row = styled.div`
@@ -22,13 +26,18 @@ display:flex;
     width:50%;
     position:relative;
 }
+.column:nth-child(1){
+    z-index:3;
+}
 & ul.main-menu{
     margin-top:3%;
     font-size: 10rem;
     font-weight:400;
     color:white;
     list-style:none;
-    
+    @media(max-width:${({ theme }) => theme.rwd.xl}){
+        font-size: 5rem;
+    }
     &> li{
         cursor:pointer;
         width:70%;
@@ -38,6 +47,8 @@ display:flex;
         & > ul.submenu{
             max-height:100vh;
             transition: max-height .4s;
+            width:100vw;
+            z-index:300;
             & > li{
                 color:white;
                 transition: color .4s .4s;
@@ -74,6 +85,24 @@ display:flex;
         &:hover{
             font-weight:bold;
         }
+        @media(max-width:${({ theme }) => theme.rwd.xl}){
+            font-size:2rem;   
+        }
+        @media(max-width:${({ theme }) => theme.rwd.md}){
+            color:white;
+        }
+    }
+    @media(max-width:${({ theme }) => theme.rwd.xl}){
+        left:40vw;
+    }
+    @media(max-width:${({ theme }) => theme.rwd.md}){
+        border-left:none;
+        position:initial;
+        list-style:none;
+        padding-left:.1rem;
+        max-height:200vh;
+        width:200%;
+        z-index:200;
     }
 }
 `

@@ -25,6 +25,10 @@ h4,h5,h6,p,span,div{
 }
 h1{
     font-size:4rem;
+    @media(max-width:${({ theme }) => theme.rwd.md}){
+        font-size:2rem;
+        padding-top:3rem;
+    }
 }
 .btn{
     padding:.5rem 1rem;

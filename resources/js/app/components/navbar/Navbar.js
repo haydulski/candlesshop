@@ -41,7 +41,7 @@ function Navbar({ loaded, qty, products,
         t1.from(
             ".main-menu li.first-level",
             0.5,
-            { y: -100, opacity: 0, stagger: .4, delay: .4, reversed: true },
+            { y: -101, opacity: 0, stagger: .4, delay: .4, reversed: true },
             "0.1",
             "-=0.4"
         );
@@ -64,7 +64,7 @@ function Navbar({ loaded, qty, products,
 
 
             t1.to('.toggle-menu', .8, {
-                top: "-100vh",
+                top: "-101vh",
             });
 
         }

@@ -19,7 +19,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\ndisplay:flex;\njustify-content:space-between;\nwidth:100%;\nflex-wrap:wrap;\n"])));
-var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:", ";\ntext-align:left;\nmargin-top:2rem;\n& img{\n    width: 90%;\nheight: 400px;\nobject-fit: cover;\n}\n& p.title{\n    font-size:1.75rem;\n    font-weight:bold;\n    color:", "\n}\n& p.price{\n    font-size:1.75rem;\n    font-weight:medium;\n    color:", "\n}\n"])), function (_ref) {
+var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nwidth:", ";\ntext-align:left;\nmargin-top:2rem;\n& img{\n    width: 90%;\nheight: 400px;\nobject-fit: cover;\n}\n& p.title{\n    font-size:1.75rem;\n    font-weight:bold;\n    color:", "\n}\n& p.price{\n    font-size:1.75rem;\n    font-weight:medium;\n    color:", "\n}\n@media(max-width:", "){\n    width:50%;\n}\n@media(max-width:", "){\n    width:100%;\n}\n"])), function (_ref) {
   var width = _ref.width;
   return width;
 }, function (_ref2) {
@@ -30,6 +30,12 @@ var Product = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_tem
   var color = _ref3.color,
       theme = _ref3.theme;
   return color =  true ? theme.colors.green : 0;
+}, function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.rwd.xl;
+}, function (_ref5) {
+  var theme = _ref5.theme;
+  return theme.rwd.md;
 });
 
 /***/ }),
@@ -182,11 +188,23 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].section(_templateObject || (_templateObject = _taggedTemplateLiteral(["\nmin-height:100vh;\nmin-width:100vw;\nbackground-image:url(", ");\nbackground-position:center;\nbackground-size:cover;\nbackground-repeat:no-repeat;\nposition:realtive;\n\n"])), _imgs_main_page_header_jpg__WEBPACK_IMPORTED_MODULE_0__["default"]);
-var Heading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h1(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nfont-size:10rem;\ncolor:", ";\ntext-transform:uppercase;\nfont-weight:500;\nposition:absolute;\ntop:40%;\nleft:8%;\ntransform:translateY(-50%);\n"])), function (_ref) {
+var Heading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].h1(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\nfont-size:10rem;\ncolor:", ";\ntext-transform:uppercase;\nfont-weight:500;\nposition:absolute;\ntop:40%;\nleft:8%;\ntransform:translateY(-50%);\n@media(max-width:", "){\n    font-size:5rem;\n}\n@media(max-width:", "){\n    font-size:3rem;\n}\n"])), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.main;
+}, function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.rwd.xl;
+}, function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.rwd.md;
 });
-var Slider = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\nposition:relative;\nmin-height:100vh;\n& section.slide{\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n}\n"])));
+var Slider = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\nposition:relative;\nmin-height:100vh;\n@media(max-width:", "){\n    position:initial;\n}\n& section.slide{\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    @media(max-width:", "){\n        position:initial;\n        padding:5rem 0;\n    }\n}\n"])), function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.rwd.xl;
+}, function (_ref5) {
+  var theme = _ref5.theme;
+  return theme.rwd.xl;
+});
 
 /***/ }),
 
@@ -224,36 +242,38 @@ var Main = function Main() {
   var title = gsap_all__WEBPACK_IMPORTED_MODULE_6__.gsap.timeline();
   var sliderAnimation = gsap_all__WEBPACK_IMPORTED_MODULE_6__.gsap.timeline();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // page title 
-    gsap_all__WEBPACK_IMPORTED_MODULE_6__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_7__.ScrollTrigger);
-    title.from(pageTitle.current, 0.4, {
-      x: -200,
-      delay: .5,
-      duration: .5,
-      opacity: 0
-    }); // slider 
+    // page titl
+    if (window.matchMedia("(min-width:1024px)").matches) {
+      gsap_all__WEBPACK_IMPORTED_MODULE_6__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_7__.ScrollTrigger);
+      title.from(pageTitle.current, 0.4, {
+        x: -200,
+        delay: .5,
+        duration: .5,
+        opacity: 0
+      }); // slider 
 
-    sliderAnimation.from('.slide.slide1', {
-      xPercent: -100,
-      opacity: 0.6
-    }).from('.slide.slide2', {
-      xPercent: 100,
-      opacity: 0.6
-    });
-    gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_7__.ScrollTrigger.create({
-      animation: sliderAnimation,
-      trigger: '.main-slider',
-      start: "top -50px",
-      end: "+=4000",
-      // snap: 1 / 2,
-      scrub: 2,
-      pin: true,
-      anticipaePin: 1
-    });
-    return function () {
-      sliderAnimation.kill();
-      title.kill();
-    };
+      sliderAnimation.from('.slide.slide1', {
+        xPercent: -100,
+        opacity: 0.6
+      }).from('.slide.slide2', {
+        xPercent: 100,
+        opacity: 0.6
+      });
+      gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_7__.ScrollTrigger.create({
+        animation: sliderAnimation,
+        trigger: '.main-slider',
+        start: "top -50px",
+        end: "+=4000",
+        // snap: 1 / 2,
+        scrub: 2,
+        pin: true,
+        anticipaePin: 1
+      });
+      return function () {
+        sliderAnimation.kill();
+        title.kill();
+      };
+    }
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Main_css_js__WEBPACK_IMPORTED_MODULE_1__.Container, {

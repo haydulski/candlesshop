@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from './Footer.css'
-import Logo from '../../imgs/logo-icon.png'
+import Logo from '../../imgs/logo-icon-small.png'
 import { Link } from 'react-router-dom'
 
 function Footer() {

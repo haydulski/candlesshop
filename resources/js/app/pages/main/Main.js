@@ -15,35 +15,37 @@ const Main = () => {
 
 
     useEffect(() => {
-        // page title 
+        // page titl
+        if (window.matchMedia("(min-width:1024px)").matches) {
 
-        gsap.registerPlugin(ScrollTrigger)
-        title.from(pageTitle.current, 0.4, { x: -200, delay: .5, duration: .5, opacity: 0 })
+            gsap.registerPlugin(ScrollTrigger)
+            title.from(pageTitle.current, 0.4, { x: -200, delay: .5, duration: .5, opacity: 0 })
 
-        // slider 
+            // slider 
 
 
-        sliderAnimation.from('.slide.slide1', {
-            xPercent: -100, opacity: 0.6
-        }).from('.slide.slide2', {
-            xPercent: 100, opacity: 0.6
-        })
+            sliderAnimation.from('.slide.slide1', {
+                xPercent: -100, opacity: 0.6
+            }).from('.slide.slide2', {
+                xPercent: 100, opacity: 0.6
+            })
 
-        ScrollTrigger.create({
-            animation: sliderAnimation,
-            trigger: '.main-slider',
-            start: "top -50px",
-            end: "+=4000",
-            // snap: 1 / 2,
-            scrub: 2,
-            pin: true,
-            anticipaePin: 1
-        })
+            ScrollTrigger.create({
+                animation: sliderAnimation,
+                trigger: '.main-slider',
+                start: "top -50px",
+                end: "+=4000",
+                // snap: 1 / 2,
+                scrub: 2,
+                pin: true,
+                anticipaePin: 1
+            })
 
-        return () => {
-            sliderAnimation.kill();
-            title.kill();
-        };
+            return () => {
+                sliderAnimation.kill();
+                title.kill();
+            };
+        }
     }, [])
 
     return (
