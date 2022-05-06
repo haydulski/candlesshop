@@ -10,8 +10,9 @@ import Navbar from './components/navbar/navbar'
 import { Provider } from 'react-redux'
 import configureStore from './redux/store'
 import ProtectedRoute from './services/ProtectedRoute'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Loader from './components/loader/Loader'
 
 const Main = React.lazy(() => import('./pages/main/Main'))
 const SingleProduct = React.lazy(() => import('./pages/singleProduct/SingleProduct'))
@@ -37,7 +38,7 @@ function App() {
 
     return (
         <Provider store={store}>
-            <Suspense fallback={<p>Page is loading...</p>}>
+            <Suspense fallback={<Loader />}>
                 <Router>
                     <ThemeProvider theme={theme}>
                         <GlobalStyle />
