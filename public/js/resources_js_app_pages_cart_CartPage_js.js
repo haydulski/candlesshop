@@ -102,7 +102,13 @@ function CartPage(_ref) {
   var totalBrutto = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
     return (totalNetto + totalNetto * .23).toFixed(2);
   }, [totalNetto]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_CartPage_css__WEBPACK_IMPORTED_MODULE_1__.Container, {
+  return cart.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_CartPage_css__WEBPACK_IMPORTED_MODULE_1__.Container, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      children: "Your cart"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      children: "Your cart is empty, go back to shoping"
+    })]
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_CartPage_css__WEBPACK_IMPORTED_MODULE_1__.Container, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
       children: "Your cart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CartPage_css__WEBPACK_IMPORTED_MODULE_1__.Row, {

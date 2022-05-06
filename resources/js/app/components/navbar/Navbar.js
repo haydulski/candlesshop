@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { NavContainer, Nav, Column } from './Navbar.css'
 import { MenuBar } from '../../imgs/menu-icon.js'
 import { Cart } from '../../imgs/cart-icon.js'
-import Logo from '../../imgs/logo-icon.png'
+import Logo from '../../imgs/logo-icon-small.png'
 import { Account } from '../../imgs/account-svg'
 import { SearchIcon } from '../../imgs/search-icon'
 import Menu from '../menu/Menu'
@@ -83,7 +83,7 @@ function Navbar({ loaded, qty, products,
                     <MenuBar className="menu-trigger" />
                 </Column>
                 <Column align="center">
-                    <img src={Logo} alt="page-logo" />
+                    <Link to="/"><img src={Logo} alt="page-logo" /></Link>
                 </Column>
                 <Column align="right">
                     <SearchIcon />

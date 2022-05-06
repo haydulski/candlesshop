@@ -34,51 +34,59 @@ function CartPage({ cart, removeFromCart }) {
         return (totalNetto + (totalNetto * .23)).toFixed(2)
     }, [totalNetto])
 
-    return (
-        <Container>
-            <h1>Your cart</h1>
-            <Row>
-                <Col>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Total</th>
-                                <th>Remove item</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <CartItems />
-                        </tbody>
-                    </table>
-                    <table className='summary'>
-                        <tbody>
-                            <tr>
-                                <td>Total price netto:</td>
-                                <td>${totalNetto}</td>
-                            </tr>
-                            <tr>
-                                <td>Tax:</td>
-                                <td>23%</td>
-                            </tr>
-                            <tr>
-                                <td>Total price brutto:</td>
-                                <td>${totalBrutto}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </Col>
-            </Row>
-            <Row>
-                <Link to='/order'><button className='btn btn-primary'>Go to Order</button></Link>
-            </Row>
 
-        </Container>
+    return cart.length === 0 ?
+        (
+            <Container>
+                <h1>Your cart</h1>
+                <p>Your cart is empty, go back to shoping</p>
+            </Container>
+        )
+        : (
+            <Container>
+                <h1>Your cart</h1>
+                <Row>
+                    <Col>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th>Remove item</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <CartItems />
+                            </tbody>
+                        </table>
+                        <table className='summary'>
+                            <tbody>
+                                <tr>
+                                    <td>Total price netto:</td>
+                                    <td>${totalNetto}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax:</td>
+                                    <td>23%</td>
+                                </tr>
+                                <tr>
+                                    <td>Total price brutto:</td>
+                                    <td>${totalBrutto}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+                <Row>
+                    <Link to='/order'><button className='btn btn-primary'>Go to Order</button></Link>
+                </Row>
 
-    );
+            </Container>
+
+        );
 }
 
 export default connect(state => ({
