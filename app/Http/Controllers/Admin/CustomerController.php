@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class CustomerController extends Controller
@@ -27,11 +28,11 @@ class CustomerController extends Controller
         return view('adminpanel.customers.all', ['customers' => $all]);
     }
 
-    public function show(int $id): View
+    public function show(int $id): View| RedirectResponse
     {
         $customer = $this->user->with('orders')->find($id);
-        if ($customer->vendor === '0') {
-            return redirect()->route('admin.customers.all')->with('errorr', 'You are not allowed to see this customer');
+        if ($customer->vendor === 0) {
+            return redirect()->route('admin.customers.all')->with('error', 'You are not allowed to see this customer');
         }
         return view('adminpanel.customers.show', ['customer' => $customer]);
     }
