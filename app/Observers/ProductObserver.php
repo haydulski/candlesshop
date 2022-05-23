@@ -16,6 +16,7 @@ class ProductObserver
     public function created(Product $product)
     {
         Cache::forget('all_products');
+        Cache::forget('admin_summary');
     }
 
     /**
@@ -38,5 +39,6 @@ class ProductObserver
     public function deleted(Product $product)
     {
         Cache::forget('all_products');
+        Cache::forget('admin_summary');
     }
 }
