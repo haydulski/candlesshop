@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,7 @@ class ProductController extends Controller
     public function products(): View
     {
         $allProducts = $this->products->with('categories')->paginate(10);
+
 
         return view('adminpanel.products.products', ['products' => $allProducts]);
     }

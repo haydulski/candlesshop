@@ -20,29 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    Route::controller(UserController::class)->group(function () {
-        Route::get('user', 'show')->middleware('auth:sanctum');
-    });
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('products', 'index');
-        Route::get('products/{product}', 'show');
-        Route::post('products', 'store')->middleware('auth:sanctum');
-        Route::put('products/{product}', 'update')->middleware('auth:sanctum');
-        Route::delete('products/{product}', 'destroy')->middleware('auth:sanctum');
-    });
-    // categories 
+    Route::get('user', [UserController::class, 'show'])->middleware('auth:sanctum');
+
+    Route::apiResource('products', ProductController::class)->only(['show', 'index']);
+
     Route::controller(CategoryController::class)->group(function () {
         Route::get('categories', 'index');
         Route::get('categories/product', 'productcategories');
     });
-    Route::controller(OrderController::class)->group(function () {
-        Route::post('new-order', 'store');
-    });
 
-
-
-    // Route::post('products', [ProductController::class, 'create']);
-    // Route::post('products/{id}', [ProductController::class, 'update']);
-    // Route::delete('products/{id}', [ProductController::class, 'destroy']);
-
+    Route::post('new-order', [OrderController::class, 'store']);
 });

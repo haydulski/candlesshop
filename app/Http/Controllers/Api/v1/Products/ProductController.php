@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductCreateRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -19,8 +20,10 @@ class ProductController extends Controller
 
     public function index(): Response
     {
-        $products = $this->product->with('categories')->get();
-        // dump($products[0]->categories[0]->name);
+        $products = Cache::remember('all_products', 60 * 60 * 24, function () {
+            return $this->product->with('categories')->get();
+        });
+
         return response()->json($products);
     }
 
