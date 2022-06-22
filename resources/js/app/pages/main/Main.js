@@ -25,9 +25,9 @@ const Main = () => {
 
 
             sliderAnimation.from('.slide.slide1', {
-                xPercent: -100, opacity: 0.6
+                xPercent: -100
             }).from('.slide.slide2', {
-                xPercent: 100, opacity: 0.6
+                xPercent: 100
             })
 
             ScrollTrigger.create({
