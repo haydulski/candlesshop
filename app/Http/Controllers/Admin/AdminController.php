@@ -28,7 +28,7 @@ class AdminController extends Controller
         return view('adminpanel.show', ['dbData' => $data]);
     }
 
-    public function myDetails(User $user): View
+    public function myDetails(): View
     {
         $admin = auth()->user();
 

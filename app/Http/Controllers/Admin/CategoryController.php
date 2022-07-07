@@ -23,12 +23,14 @@ class CategoryController extends Controller
     public function index(): View
     {
         $cats = $this->category->with('products')->get();
+
         return view('adminpanel.categories.all', ['categories' => $cats]);
     }
 
     public function show(int $id): View
     {
         $cat = $this->category->find($id);
+
         return view('adminpanel.categories.show', ['cat' => $cat]);
     }
 
@@ -41,6 +43,7 @@ class CategoryController extends Controller
     {
         $data = $req->validated();
         $this->category->create($data);
+
         return redirect()->route('admin.categories.all')->with('success', 'Category created!');
     }
 
@@ -50,8 +53,10 @@ class CategoryController extends Controller
         if (isset($newData)) {
             $cat = $this->category->find($id);
             $cat->update($newData);
+
             return redirect()->route('admin.categories.all')->with('success', 'Category was updated!');
         }
+
         return redirect()->route('admin.category.show', $id)->with('error', 'Something went wrong');
     }
 
@@ -61,8 +66,10 @@ class CategoryController extends Controller
         if ($cat) {
             $cat->products()->detach();
             $cat->delete();
+
             return redirect()->route('admin.categories.all')->with('success', 'Category was deleted');
         }
+
         return redirect()->route('admin.categories.all')->with('error', 'Category was not find');
     }
 }

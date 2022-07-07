@@ -24,6 +24,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $orders = $this->order->with('user')->paginate(10);
+
         return view('adminpanel.orders.all', ['orders' => $orders]);
     }
 
@@ -36,6 +37,7 @@ class OrderController extends Controller
     {
         $ord = $this->order->with('user')->find($id);
         $items = $item->with('product')->where('order_id', '=', $id)->get();
+
         return view('adminpanel.orders.show', ['order' => $ord, 'items' => $items]);
     }
 
@@ -68,8 +70,10 @@ class OrderController extends Controller
         if (isset($data)) {
             $order = $this->order->find($id);
             $order->update(['status' => $data['status']]);
+
             return redirect()->route('admin.order.show', $id)->with('success', 'Status of order was update');
         }
+
         return redirect('401')->route('admin.order.show', $id)->with('error', 'Somethin went wrong');
     }
 }

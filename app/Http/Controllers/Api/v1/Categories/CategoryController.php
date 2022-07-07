@@ -20,6 +20,7 @@ class CategoryController extends Controller
     public function index(): Response
     {
         $cats = $this->cat->with('products')->get();
+
         return response()->json($cats);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\v1\Products;
 
 use App\Http\Controllers\Controller;
@@ -40,6 +42,7 @@ class ProductController extends Controller
         $data = $req->validated();
         if (isset($data)) {
             $this->product->create($data);
+
             return response('Product created', 200);
         }
     }
@@ -50,6 +53,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
         if (isset($data)) {
             $product->update($data);
+
             return response('Product updated', 200);
         }
     }
@@ -60,6 +64,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
         $product->categories()->detach();
         $product->delete();
+
         return response('Product deleted', 200);
     }
 }

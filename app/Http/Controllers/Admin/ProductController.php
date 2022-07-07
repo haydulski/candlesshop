@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\ProductUpdateRequest;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,13 +26,13 @@ class ProductController extends Controller
     {
         $allProducts = $this->products->with('categories')->paginate(10);
 
-
         return view('adminpanel.products.products', ['products' => $allProducts]);
     }
 
     public function add(Category $cat): View
     {
         $categories = $cat->all();
+
         return view('adminpanel.products.add', ['categories' => $categories]);
     }
 
@@ -48,8 +47,10 @@ class ProductController extends Controller
             }
             $prod['prodCats'] = $prodCatIds;
             $categories = $cat->all();
+
             return view('adminpanel.products.edit', ['product' => $prod, 'categories' => $categories]);
         } else {
+
             return redirect()->route('admin.products')->with('error', 'Product with that id does not exist');
         }
     }
@@ -91,8 +92,10 @@ class ProductController extends Controller
         if (isset($product)) {
             $product->categories()->detach();
             $product->delete();
+
             return redirect()->route('admin.products')->with('success', 'Product was deleted');
         } else {
+
             return redirect()->route('admin.products')->with('error', 'Something went wrong');
         }
     }
@@ -115,6 +118,7 @@ class ProductController extends Controller
                 $newProduct->categories()->attach($catId);
             }
         }
+
         return redirect()->route('admin.products')->with('success', 'Product was created');
     }
 }
