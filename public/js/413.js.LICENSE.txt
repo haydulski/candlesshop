@@ -1,5 +1,5 @@
 /*!
- * Observer 3.10.2
+ * Observer 3.10.4
  * https://greensock.com
  *
  * @license Copyright 2008-2022, GreenSock. All rights reserved.
@@ -9,7 +9,7 @@
 */
 
 /*!
- * ScrollTrigger 3.10.2
+ * ScrollTrigger 3.10.4
  * https://greensock.com
  *
  * @license Copyright 2008-2022, GreenSock. All rights reserved.
