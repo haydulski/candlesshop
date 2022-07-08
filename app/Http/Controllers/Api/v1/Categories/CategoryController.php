@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\v1\Categories;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Api\CategoriesResoruce;
 use App\Models\Category;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection as Json;
 
 class CategoryController extends Controller
 {
@@ -17,10 +18,10 @@ class CategoryController extends Controller
         $this->cat = $cat;
     }
 
-    public function index(): Response
+    public function index(): Json
     {
         $cats = $this->cat->with('products')->get();
 
-        return response()->json($cats);
+        return CategoriesResoruce::collection($cats);
     }
 }

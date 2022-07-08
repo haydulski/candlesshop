@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -33,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::share('applicationName', 'LaReact');
         Paginator::useBootstrap();
+        JsonResource::withoutWrapping();
     }
 }

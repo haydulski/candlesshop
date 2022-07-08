@@ -6,7 +6,9 @@ namespace App\Http\Controllers\Api\v1\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ProductCreateRequest;
+use App\Http\Resources\Api\ProductsWithCategoriesResource;
 use App\Models\Product;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection as Json;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,20 +21,20 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-    public function index(): Response
+    public function index(): Json
     {
         $products = Cache::remember('all_products', 60 * 60 * 24, function () {
             return $this->product->with('categories')->get();
         });
 
-        return response()->json($products);
+        return ProductsWithCategoriesResource::collection($products);
     }
 
-    public function show($id): Response
+    public function show(int $id)
     {
         $product = $this->product->with('categories')->find($id);
 
-        return response()->json($product);
+        return new ProductsWithCategoriesResource($product);
     }
 
     public function store(ProductCreateRequest $req): Response
