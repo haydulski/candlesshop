@@ -7,11 +7,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductCreateRequest;
 use App\Http\Requests\Admin\ProductUpdateRequest;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -36,9 +36,8 @@ class ProductController extends Controller
         return view('adminpanel.products.add', ['categories' => $categories]);
     }
 
-    public function edit(int $id,  Category $cat): View|RedirectResponse
+    public function edit(int $id, Category $cat): View|RedirectResponse
     {
-
         $prod = $this->products->with('categories')->find($id);
         if (isset($prod)) {
             $prodCatIds = [];
@@ -50,19 +49,16 @@ class ProductController extends Controller
 
             return view('adminpanel.products.edit', ['product' => $prod, 'categories' => $categories]);
         } else {
-
             return redirect()->route('admin.products')->with('error', 'Product with that id does not exist');
         }
     }
 
-
     public function update(int $id, ProductUpdateRequest $req): RedirectResponse
     {
-
         $validated = $req->validated();
         $product = $this->products->find($id);
 
-        if (!empty($validated['categories'])) {
+        if (! empty($validated['categories'])) {
             $product->categories()->detach();
             foreach ($validated['categories'] as $catId) {
                 $product->categories()->attach($catId);
@@ -71,10 +67,10 @@ class ProductController extends Controller
             $product->categories()->detach();
         }
 
-        if (!empty($validated['picture'])) {
+        if (! empty($validated['picture'])) {
             $pic = $validated['picture'];
             Storage::disk('public')->delete($product->picture);
-            $path = $pic->storeAs('product_pictures', $product->id . '.jpg', 'public');
+            $path = $pic->storeAs('product_pictures', $product->id.'.jpg', 'public');
             $validated['picture'] = $path;
         } else {
             $validated['picture'] = $product->picture;
@@ -95,7 +91,6 @@ class ProductController extends Controller
 
             return redirect()->route('admin.products')->with('success', 'Product was deleted');
         } else {
-
             return redirect()->route('admin.products')->with('error', 'Something went wrong');
         }
     }
@@ -107,13 +102,13 @@ class ProductController extends Controller
         if (isset($data)) {
             $newProduct = $this->products->create($data);
 
-            if (!empty($data['picture'])) {
+            if (! empty($data['picture'])) {
                 $pic = $data['picture'];
-                $path = $pic->storeAs('product_pictures', $newProduct->id . '-product.jpg', 'public');
+                $path = $pic->storeAs('product_pictures', $newProduct->id.'-product.jpg', 'public');
                 $newProduct->update(['picture' => $path]);
             }
         }
-        if (!empty($data['categories'])) {
+        if (! empty($data['categories'])) {
             foreach ($data['categories'] as $catId) {
                 $newProduct->categories()->attach($catId);
             }

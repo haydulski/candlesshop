@@ -32,7 +32,6 @@ class CustomerController extends Controller
     {
         $customer = $this->user->with('orders')->find($id);
         if ($customer->vendor === 0) {
-
             return redirect()->route('admin.customers.all')->with('error', 'You are not allowed to see this customer');
         }
 

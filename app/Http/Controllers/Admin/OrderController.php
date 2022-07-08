@@ -46,7 +46,7 @@ class OrderController extends Controller
         $form = $req->validated();
 
         if (isset($form)) {
-            $priceNetto = (int)$form['sub_total'];
+            $priceNetto = (int) $form['sub_total'];
             $form['total_price'] = $priceNetto + $form['shipping'];
             $form['session_id'] = 'test-session';
             $form['token'] = 'test-token';

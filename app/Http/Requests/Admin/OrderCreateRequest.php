@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderCreateRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         $vendor = Auth::user()->vendor;
-        if ($vendor === 0) return true;
+        if ($vendor === 0) {
+            return true;
+        }
 
         return false;
     }
-
 
     public function rules()
     {
@@ -35,9 +35,10 @@ class OrderCreateRequest extends FormRequest
             'city' => 'required|string|max:100',
             'province' => 'required|string|max:100',
             'country' => 'required|string|max:100',
-            'message' => 'nullable|string|max:5000'
+            'message' => 'nullable|string|max:5000',
         ];
     }
+
     public function messages()
     {
         return [

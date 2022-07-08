@@ -21,7 +21,7 @@ class ProdCatsSeeder extends Seeder
         for ($i = 0; $i < $count; $i++) {
             $columns[] = [
                 'product_id' => $i + 1,
-                'category_id' => rand(1, 4)
+                'category_id' => rand(1, 4),
             ];
         }
         $db->insert($columns);

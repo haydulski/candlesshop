@@ -16,7 +16,6 @@ class AddUsersMobileColumn extends Migration
         Schema::table(
             'users',
             function (Blueprint $table) {
-
                 $table->string('surname', 50)->after('name');
                 $table->string('mobile', 15)->unique()->after('surname');
                 $table->tinyInteger('vendor')->default(0)->after('mobile');
@@ -33,7 +32,6 @@ class AddUsersMobileColumn extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-
             $table->dropColumn('surname');
             $table->dropColumn('mobile');
             $table->dropColumn('vendor');

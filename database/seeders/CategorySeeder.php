@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder
 {
@@ -25,11 +25,11 @@ class CategorySeeder extends Seeder
             $cats[] = [
                 'parent_category' => null,
                 'name' => $name,
-                'slug' => strtolower($name) . '-category',
+                'slug' => strtolower($name).'-category',
                 'desc' => $faker->paragraph(1, true),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ];
-        };
+        }
 
         $db->insert($cats);
     }

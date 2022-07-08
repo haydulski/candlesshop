@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Post;
 use Carbon\Carbon;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
 
 class PostsSeeder extends Seeder
 {
@@ -18,7 +18,6 @@ class PostsSeeder extends Seeder
     {
         Post::truncate();
 
-
         $faker = Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
@@ -26,9 +25,9 @@ class PostsSeeder extends Seeder
             $newPost = [
                 'title' => $faker->sentence(3, true),
                 'body' => $faker->sentence(),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ];
             Post::create($newPost);
-        };
+        }
     }
 }

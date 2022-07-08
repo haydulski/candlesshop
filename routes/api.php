@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\v1\Products\ProductController;
 use App\Http\Controllers\Api\v1\Categories\CategoryController;
 use App\Http\Controllers\Api\v1\Orders\OrderController;
+use App\Http\Controllers\Api\v1\Products\ProductController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::prefix('v1')->group(function () {
-
     Route::get('user', [UserController::class, 'show'])->middleware('auth:sanctum');
 
     Route::apiResource('products', ProductController::class)->only(['show', 'index']);

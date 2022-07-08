@@ -29,7 +29,7 @@ class VendorUsersSeeder extends Seeder
                 'mobile' => $faker->phoneNumber(),
                 'vendor' => 1,
                 'password' => '12345678',
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ];
         }
         $db->insert($vendorUsers);

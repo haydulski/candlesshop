@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductCreateRequest extends FormRequest
@@ -23,7 +23,7 @@ class ProductCreateRequest extends FormRequest
             'on_shop' => 'nullable|integer|max:1',
             'price' => 'required|integer',
             'description' => 'nullable|max:1000',
-            'stock_qty' => 'integer|min:0'
+            'stock_qty' => 'integer|min:0',
         ];
     }
 

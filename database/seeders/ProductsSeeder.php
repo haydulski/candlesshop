@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Faker\Factory;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Faker\Factory;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductsSeeder extends Seeder
 {
@@ -28,9 +28,9 @@ class ProductsSeeder extends Seeder
                 'price' => $faker->randomNumber(3),
                 'description' => $faker->paragraph(3, true),
                 'stock_qty' => $faker->numberBetween(1, 10),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ];
-        };
+        }
 
         $db->insert($products);
     }

@@ -19,7 +19,7 @@ class Order extends Model
         'tax', 'sub_total', 'total_price',
         'shipping',
         'name', 'surname', 'mobile', 'email', 'street', 'city', 'province', 'country',
-        'message'
+        'message',
     ];
 
     public function items(): HasMany

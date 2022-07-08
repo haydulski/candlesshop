@@ -13,8 +13,8 @@ class AddUsersGuestAdmin extends Migration
      */
     public function up()
     {
-        Schema::table('users',function(Blueprint $table ){
-$table->boolean('guest_admin')->default(false);
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('guest_admin')->default(false);
         });
     }
 
@@ -25,8 +25,8 @@ $table->boolean('guest_admin')->default(false);
      */
     public function down()
     {
-        Schema::table('users',function(Blueprint $table ){
+        Schema::table('users', function (Blueprint $table) {
             $table->dropIfExists('guest_admin');
-                    });
+        });
     }
 }

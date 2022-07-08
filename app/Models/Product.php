@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     use HasFactory;
+
     protected $table = 'products';
 
     protected $fillable = [
@@ -18,7 +19,7 @@ class Product extends Model
         'price',
         'description',
         'stock_qty',
-        'picture'
+        'picture',
     ];
 
     public function categories(): BelongsToMany

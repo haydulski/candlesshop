@@ -1,5 +1,6 @@
 <?php
-if (!function_exists('orderStatusName')) {
+
+if (! function_exists('orderStatusName')) {
     function orderStatusName(int $id): string
     {
         switch ($id) {

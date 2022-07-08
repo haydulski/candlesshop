@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class CategoryUpdateRequest extends FormRequest
 {
     public function authorize()
     {
         $vendor = Auth::user()->vendor;
-        if ($vendor === 0) return true;
+        if ($vendor === 0) {
+            return true;
+        }
 
         return false;
     }
@@ -27,9 +29,9 @@ class CategoryUpdateRequest extends FormRequest
                 'required',
                 'string',
                 'max:200',
-                Rule::unique('category', 'slug')->ignore($this->route('id'))
+                Rule::unique('category', 'slug')->ignore($this->route('id')),
             ],
-            'desc' => 'nullable|string|max:1000'
+            'desc' => 'nullable|string|max:1000',
         ];
     }
 }

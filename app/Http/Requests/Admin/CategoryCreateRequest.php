@@ -12,7 +12,9 @@ class CategoryCreateRequest extends FormRequest
     public function authorize()
     {
         $vendor = Auth::user()->vendor;
-        if ($vendor === 0) return true;
+        if ($vendor === 0) {
+            return true;
+        }
 
         return false;
     }
@@ -23,7 +25,7 @@ class CategoryCreateRequest extends FormRequest
             'parent_category' => 'nullable',
             'name' => 'required|string|max:100',
             'slug' => 'required|string|max:200|unique:category,slug',
-            'desc' => 'nullable|string|max:1000'
+            'desc' => 'nullable|string|max:1000',
         ];
     }
 }

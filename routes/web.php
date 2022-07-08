@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +27,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('shop-admin')->name('admin.')
         ->controller(ProductController::class)->group(function () {
-
             Route::get('/products', 'products')->name('products');
             Route::post('/products', 'store')->name('product.store')->middleware('guestAdmin');
             Route::get('/products/add', 'add')->name('product.add');
@@ -38,7 +37,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('shop-admin')->name('admin.')
         ->controller(CategoryController::class)->group(function () {
-
             Route::get('/categories', 'index')->name('categories.all');
             Route::post('/categories', 'store')->name('category.store')->middleware('guestAdmin');
             Route::get('/categories/new', 'create')->name('category.new');
@@ -49,7 +47,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('shop-admin')->name('admin.')
         ->controller(CustomerController::class)->group(function () {
-
             Route::get('/customers/{sorting?}', 'index')->name('customers.all');
             Route::get('/customer/{id}', 'show')->name('customer.show')->where('id', '[0-9]+');
             Route::delete('/customer/{id}', 'destroy')->name('customer.destroy')->where('id', '[0-9]+')->middleware('guestAdmin');
@@ -58,7 +55,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::prefix('shop-admin')->name('admin.')
         ->controller(OrderController::class)->group(function () {
-
             Route::get('/orders', 'index')->name('orders.all');
             Route::get('/orders/new', 'create')->name('order.create');
             Route::post('/orders', 'store')->name('order.store')->middleware('guestAdmin');

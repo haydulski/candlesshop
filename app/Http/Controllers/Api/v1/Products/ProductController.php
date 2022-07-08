@@ -10,7 +10,6 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class ProductController extends Controller
 {
     private Product $product;
@@ -38,7 +37,6 @@ class ProductController extends Controller
 
     public function store(ProductCreateRequest $req): Response
     {
-
         $data = $req->validated();
         if (isset($data)) {
             $this->product->create($data);
@@ -60,7 +58,6 @@ class ProductController extends Controller
 
     public function destroy(int $id): Response
     {
-
         $product = $this->product->find($id);
         $product->categories()->detach();
         $product->delete();
