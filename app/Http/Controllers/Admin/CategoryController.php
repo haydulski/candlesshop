@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function index(): View
     {
-        $cats = $this->category->with('products')->get();
+        $cats = $this->category::get();
 
         return view('adminpanel.categories.all', ['categories' => $cats]);
     }

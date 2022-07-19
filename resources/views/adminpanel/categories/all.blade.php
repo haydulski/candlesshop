@@ -35,7 +35,7 @@
                             <td>{{ $cat->slug }}</td>
                             <td>{{ $cat->description }}</td>
                             <td>
-                                {{ count($cat->products) }}
+                                {{$cat->product_count }}
                             </td>
 
                             <td>
